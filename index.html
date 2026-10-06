@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Église Orthodoxe de Clermont-Ferrand - Paroisse Saint Nicolas et Sainte Radegonde</title>
+  <meta name="description" content="Site officiel de la Paroisse Orthodoxe Saint Nicolas et Sainte Radegonde à Clermont-Ferrand. Offices liturgiques, calendrier des saints, agenda et contacts.">
+  <meta property="og:title" content="Église Orthodoxe de Clermont-Ferrand">
+  <meta property="og:description" content="Paroisse Orthodoxe Saint Nicolas et Sainte Radegonde à Clermont-Ferrand.">
+  <meta property="og:type" content="website">
+
+  <!-- ===================================================================
+       STYLES CSS - PALETTE SPIRITUELLE ARDOISE / BLEU NUIT & OR BYZANTIN
+       100% autonome, compatible GitHub Pages sans bundler
+       =================================================================== -->
+  <style>
+    :root {
+      --bg-main: #0b1120;
+      --bg-sidebar: #070d18;
+      --bg-card: #131d31;
+      --bg-card-hover: #18263f;
+      --border-color: #233554;
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #aa820a;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-red: #e11d48;
+      --accent-blue: #38bdf8;
+      --sidebar-width: 280px;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sélecteur de langue permanent et fixe en haut à droite */
+    .lang-switcher-fixed {
+      position: fixed;
+      top: 14px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(7, 13, 24, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .lang-btn:hover {
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.15);
+    }
+
+    .lang-btn.active {
+      background: var(--gold-primary);
+      color: #070d18;
+      font-weight: 700;
+    }
+
+    /* NAVIGATION SIDEBAR PC */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      z-index: 900;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .brand-cross {
+      font-size: 2.2rem;
+      color: var(--gold-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .brand-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      padding: 16px 10px;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .nav-item.active {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      font-size: 1.1rem;
+      width: 22px;
+      text-align: center;
+      color: var(--gold-primary);
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    /* BARRE MOBILE SUPÉRIEURE */
+    .mobile-topbar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 62px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 850;
+      padding: 0 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hamburger-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--gold-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 8px;
+    }
+
+    .hamburger-bar {
+      width: 22px;
+      height: 2px;
+      background-color: var(--gold-primary);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-brand-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      padding-left: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: calc(100vw - 230px);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 890;
+      backdrop-filter: blur(2px);
+    }
+
+    /* CONTENEUR PRINCIPAL DU CONTENU */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      width: calc(100% - var(--sidebar-width));
+      box-sizing: border-box;
+      min-height: 100vh;
+      padding: 30px 40px 60px 40px;
+      max-width: 1200px;
+    }
+
+    .page-section {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* TITRES & TYPOGRAPHIE */
+    h1.section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    /* CARTES & DISPOSITION */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    /* HERO BANNER & PHOTO D'ACCUEIL CADRÉE */
+    .hero-banner {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      margin-bottom: 26px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      width: 100%;
+    }
+
+    .hero-img-container {
+      width: 100%;
+      height: 360px;
+      max-height: 42vh;
+      overflow: hidden;
+      position: relative;
+      background: #111a2e;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11, 17, 32, 0.15) 0%, rgba(11, 17, 32, 0.88) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px 30px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      line-height: 1.2;
+    }
+
+    .hero-patrons {
+      color: var(--gold-light);
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+      margin-top: 4px;
+    }
+
+    .highlight-box {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* LECTEUR SLIDESHOW GOOGLE SLIDES & CONTRÔLES */
+    .slide-viewer-box {
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+    }
+
+    .slide-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .slide-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--bg-card);
+      padding: 14px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 18px;
+    }
+
+    .slide-tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .slide-tab-btn.active, .slide-tab-btn:hover {
+      background: var(--gold-primary);
+      color: #070d18;
+      border-color: var(--gold-primary);
+    }
+
+    /* DIAPOSITIVES NATIVES DE SECOURS */
+    .native-slide-content {
+      padding: 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: radial-gradient(circle at center, #182848 0%, #09101d 100%);
+      color: #fff;
+    }
+
+    .native-slide-title {
+      font-size: 1.7rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--gold-primary);
+      padding-bottom: 8px;
+    }
+
+    .native-slide-body {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    /* CALENDRIER & DOXOLOGIA */
+    .calendar-header-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 18px 24px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .saints-today-card {
+      border-left: 4px solid var(--gold-primary);
+      background: #101a2f;
+      padding: 22px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .fasting-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      margin-top: 10px;
+    }
+
+    .doxologia-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #991b1b;
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+
+    .doxologia-link-btn:hover {
+      background: #b91c1c;
+    }
+
+    /* CONTACT & GOOGLE MAPS */
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .contact-icon {
+      font-size: 1.25rem;
+      color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.12);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-info strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.92rem;
+    }
+
+    .contact-info a, .contact-info span {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+
+    .btn-facebook {
+      background: #1877f2;
+    }
+
+    .btn-youtube {
+      background: #ff0000;
+    }
+
+    .btn-social:hover {
+      opacity: 0.9;
+    }
+
+    .map-container {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      background: #070d18;
+    }
+
+    .map-container iframe {
+      display: block;
+      width: 100%;
+      height: 440px;
+      border: 0;
+    }
+
+    /* GALERIE PHOTOS */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .gallery-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+    }
+
+    .gallery-thumb {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      background: #09101d;
+    }
+
+    .gallery-caption {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* TABLEAU HORAIRES */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .schedule-table th, .schedule-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      text-align: left;
+    }
+
+    .schedule-table th {
+      color: var(--gold-primary);
+      font-weight: 600;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .schedule-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* GESTION RESPONSIVE */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .overlay.open {
+        display: block;
+      }
+      .mobile-topbar {
+        display: flex;
+      }
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 82px 18px 40px 18px;
+      }
+      .lang-switcher-fixed {
+        top: 11px;
+        right: 12px;
+      }
+      .hero-img-container {
+        height: 250px;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+      }
+      h1.section-title {
+        font-size: 1.45rem;
+      }
+      .map-container iframe {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================================
+       SÉLECTEUR DE LANGUE FIXE & PERMANENT (TOUJOURS VISIBLE)
+       Garantit l'affichage d'une seule langue à la fois : FR, RO ou KA
+       =================================================================== -->
+  <aside class="lang-switcher-fixed" aria-label="Sélecteur de langue">
+    <button type="button" class="lang-btn active" data-lang="fr" onclick="changeLanguage('fr')" title="Français">
+      <span>🇫🇷</span> <span>FR</span>
+    </button>
+    <button type="button" class="lang-btn" data-lang="ro" onclick="changeLanguage('ro')" title="Română">
+      <span>🇷🇴</span> <span>RO</span>
+    </button>
+    <button type="button" class="lang-btn" data-lang="ka" onclick="changeLanguage('ka')" title="ქართული">
+      <span>🇬🇪</span> <span>ქარ</span>
+    </button>
+  </aside>
+
+  <!-- ===================================================================
+       BARRE MOBILE SUPÉRIEURE (HAMBURGER & TITRE)
+       =================================================================== -->
+  <header class="mobile-topbar">
+    <button type="button" class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Menu de navigation">
+      <div class="hamburger-bar"></div>
+      <div class="hamburger-bar"></div>
+      <div class="hamburger-bar"></div>
+    </button>
+    <div class="mobile-brand-title" id="mobileTitle">Église Orthodoxe Clermont</div>
+    <div style="width: 140px;"></div>
+  </header>
+
+  <!-- OVERLAY MOBILE -->
+  <div class="overlay" id="mobileOverlay" onclick="closeSidebar()"></div>
+
+  <!-- ===================================================================
+       MENU DE NAVIGATION LATÉRAL (LAYOUT PC : ONGLETS À GAUCHE)
+       =================================================================== -->
+  <nav class="sidebar" id="sidebarNav">
+    <div class="brand-header">
+      <div class="brand-cross">☦</div>
+      <div class="brand-title" data-i18n="brand_title">Église Orthodoxe</div>
+      <div class="brand-subtitle" data-i18n="brand_patrons">St Nicolas &amp; Ste Radegonde<br>Clermont-Ferrand</div>
+    </div>
+
+    <div class="nav-menu">
+      <a class="nav-item active" data-target="home" onclick="navigateTo('home')">
+        <span class="nav-icon">🏛️</span>
+        <span data-i18n="nav_home">Accueil</span>
+      </a>
+      <a class="nav-item" data-target="presentation" onclick="navigateTo('presentation')">
+        <span class="nav-icon">📽️</span>
+        <span data-i18n="nav_presentation">Présentation / Slideshow</span>
+      </a>
+      <a class="nav-item" data-target="calendar" onclick="navigateTo('calendar')">
+        <span class="nav-icon">📅</span>
+        <span data-i18n="nav_calendar">Calendrier &amp; Agenda</span>
+      </a>
+      <a class="nav-item" data-target="history" onclick="navigateTo('history')">
+        <span class="nav-icon">📜</span>
+        <span data-i18n="nav_history">Historique &amp; Paroisse</span>
+      </a>
+      <a class="nav-item" data-target="liturgy" onclick="navigateTo('liturgy')">
+        <span class="nav-icon">🕯️</span>
+        <span data-i18n="nav_liturgy">Vie Liturgique</span>
+      </a>
+      <a class="nav-item" data-target="schedule" onclick="navigateTo('schedule')">
+        <span class="nav-icon">⏰</span>
+        <span data-i18n="nav_schedule">Horaires des Offices</span>
+      </a>
+      <a class="nav-item" data-target="gallery" onclick="navigateTo('gallery')">
+        <span class="nav-icon">🖼️</span>
+        <span data-i18n="nav_gallery">Galerie Photos</span>
+      </a>
+      <a class="nav-item" data-target="donations" onclick="navigateTo('donations')">
+        <span class="nav-icon">🤝</span>
+        <span data-i18n="nav_donations">Dons &amp; Soutien</span>
+      </a>
+      <a class="nav-item" data-target="contact" onclick="navigateTo('contact')">
+        <span class="nav-icon">📍</span>
+        <span data-i18n="nav_contact">Contact &amp; Accès</span>
+      </a>
+    </div>
+
+    <div class="sidebar-footer">
+      <div>43 rue Sainte Claire</div>
+      <div>63000 Clermont-Ferrand</div>
+      <div style="margin-top: 6px; color: var(--gold-primary);">Paroisse Orthodoxe</div>
+    </div>
+  </nav>
+
+  <!-- ===================================================================
+       CONTENU PRINCIPAL DES PAGES (SPA)
+       =================================================================== -->
+  <main class="main-wrapper">
+
+    <!-- ==================== 1. PAGE ACCUEIL ==================== -->
+    <section id="page-home" class="page-section active">
+      <!-- Cadrage photo d'accueil : Lien Google Drive direct + secours EORC.jpg -->
+      <div class="hero-banner">
+        <div class="hero-img-container">
+          <img src="https://lh3.googleusercontent.com/d/1C3ElaDXuIxRvy29Z5QvA9ZRr1eQjGXR3" 
+               alt="Église Orthodoxe Saint Nicolas et Sainte Radegonde à Clermont-Ferrand" 
+               class="hero-img" 
+               id="heroImage" 
+               onerror="this.onerror=null; this.src='EORC.jpg';">
+          <div class="hero-overlay">
+            <h1 class="hero-title" data-i18n="hero_title">Bienvenue à l'Église Orthodoxe de Clermont-Ferrand</h1>
+            <p class="hero-patrons" data-i18n="hero_subtitle">Paroisse « Saint Nicolas le Thaumaturge &amp; Sainte Radegonde »</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3 style="color: var(--gold-light); margin-bottom: 6px;" data-i18n="home_banner_title">Lieu de Culte &amp; Vie Paroissiale</h3>
+        <p data-i18n="home_banner_text">Notre église est installée au 43 rue Sainte Claire à Clermont-Ferrand. Toute la communauté orthodoxe roumaine, francophone, géorgienne et de tous horizons s'y réunit dans la prière fraternelle, la communion et la paix du Christ.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span>⏰</span> <span data-i18n="home_service_title">Prochaine Divine Liturgie</span></div>
+          <p style="font-size: 1.05rem; margin-bottom: 10px;" data-i18n="home_service_time"><strong>Chaque Dimanche matin :</strong><br>• 09h30 : Matines (Utrenia)<br>• 10h30 : Sainte et Divine Liturgie</p>
+          <p class="text-muted" data-i18n="home_service_desc">Les offices sont célébrés principalement en français et en roumain, avec des prières en géorgien et slavon pour notre communauté universelle.</p>
+          <div style="margin-top: 16px;">
+            <button class="slide-tab-btn" onclick="navigateTo('schedule')" data-i18n="btn_see_schedule">Voir tous les horaires des offices →</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>📖</span> <span data-i18n="home_saints_card_title">Saint du Jour &amp; Calendrier</span></div>
+          <div id="homeQuickSaint" style="margin-bottom: 12px; font-weight: 500;">
+            <div style="color: var(--gold-light); font-size: 1.1rem;" id="quickSaintName">Chargement du synaxaire...</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem;" id="quickSaintRule">Règle de jeûne du jour</div>
+          </div>
+          <div style="margin-top: 16px;">
+            <button class="slide-tab-btn" onclick="navigateTo('calendar')" data-i18n="btn_see_calendar">Consulter l'agenda et le calendrier complet →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🕊️</span> <span data-i18n="home_about_title">Une communauté vivante et fraternelle</span></div>
+        <p data-i18n="home_about_text">La paroisse orthodoxe de Clermont-Ferrand témoigne de la tradition millénaire de l'Église une, sainte, catholique et apostolique. Elle rassemble les fidèles d'Auvergne et accueille chacun avec amour, proposant la catéchèse, les sacrements de l'Église (baptêmes, mariages, confessions), les agapes fraternelles après chaque liturgie et les offices pour les défunts.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px;">
+          <button class="slide-tab-btn" onclick="navigateTo('presentation')" data-i18n="btn_presentation">Découvrir la Présentation / Slideshow</button>
+          <button class="slide-tab-btn" onclick="navigateTo('contact')" data-i18n="btn_contact_us">Nous contacter &amp; Venir nous voir</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. PAGE PRÉSENTATION / SLIDESHOW ==================== -->
+    <section id="page-presentation" class="page-section">
+      <h1 class="section-title"><span>📽️</span> <span data-i18n="presentation_title">Présentation / Slideshow</span></h1>
+      <p class="section-subtitle" data-i18n="presentation_subtitle">Découvrez notre paroisse, l'histoire de l'église, ses saints protecteurs et sa communauté en projection plein écran.</p>
+
+      <!-- Contrôles et sélecteur de diapositive -->
+      <div class="slide-controls-bar">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span style="font-weight: 600; color: var(--gold-light);" data-i18n="slide_select_label">Sélection de Diapositive :</span>
+          <button type="button" class="slide-tab-btn active" id="btnSlide1" onclick="setSlideIndex(1)">
+            <span>🇫🇷 Diapositive 1 (Français)</span>
+          </button>
+          <button type="button" class="slide-tab-btn" id="btnSlide2" onclick="setSlideIndex(2)">
+            <span>🇷🇴 Diapozitivul 2 (Română)</span>
+          </button>
+          <button type="button" class="slide-tab-btn" id="btnSlide3" onclick="setSlideIndex(3)">
+            <span>🇬🇪 სლაიდი 3 (ქართული)</span>
+          </button>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="slide-tab-btn" onclick="toggleFullscreenSlide()" title="Plein écran">
+            ⛶ <span data-i18n="btn_fullscreen">Mode Plein Écran</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Lecteur de présentation Google Slides officiel (avec diapositive dynamique 1, 2 ou 3) -->
+      <div class="slide-viewer-box" id="slideViewerBox">
+        <iframe id="googleSlideIframe" 
+                class="slide-iframe" 
+                src="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000&slide=1" 
+                data-base-url="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000"
+                allowfullscreen="true" 
+                mozallowfullscreen="true" 
+                webkitallowfullscreen="true">
+        </iframe>
+      </div>
+
+      <!-- Diapositives textuelles détaillées synchronisées avec la langue -->
+      <div class="card" id="slideTextCard">
+        <div id="slide-text-1">
+          <div class="card-title"><span>🇫🇷</span> <span>Diapositive 1 : Paroisse Orthodoxe de Clermont-Ferrand</span></div>
+          <p style="margin-bottom: 10px;"><strong>• Notre Église :</strong> Située au 43 rue Sainte Claire à Clermont-Ferrand, notre église en pierre volcanique accueille tous les chrétiens orthodoxes et les chercheurs de Dieu.</p>
+          <p style="margin-bottom: 10px;"><strong>• Saints Patrons :</strong> Saint Nicolas le Thaumaturge (archevêque de Myre) et Sainte Radegonde (reine des Francs).</p>
+          <p><strong>• Célébrations :</strong> Chaque dimanche à 09h30 (Matines) et 10h30 (Divine Liturgie).</p>
+        </div>
+
+        <div id="slide-text-2" style="display: none;">
+          <div class="card-title"><span>🇷🇴</span> <span>Diapozitivul 2 : Parohia Ortodoxă din Clermont-Ferrand</span></div>
+          <p style="margin-bottom: 10px;"><strong>• Biserica Noastră :</strong> Situată la adresa 43 rue Sainte Claire, biserica noastră din piatră vulcanică adună comunitatea ortodoxă din întreaga regiune Auvergne.</p>
+          <p style="margin-bottom: 10px;"><strong>• Sfinții Ocrotitori :</strong> Sfântul Ierarh Nicolae, Făcătorul de Minuni, și Sfânta Radegonda, regina francilor.</p>
+          <p><strong>• Slujbele Sfinte :</strong> În fiecare Duminică: Utrenia la ora 09:30, Sfânta Liturghie la ora 10:30.</p>
+        </div>
+
+        <div id="slide-text-3" style="display: none;">
+          <div class="card-title"><span>🇬🇪</span> <span>სლაიდი 3 : კლერმონ-ფერანის მართლმადიდებლური სამრევლო</span></div>
+          <p style="margin-bottom: 10px;"><strong>• ჩვენი ტაძარი :</strong> მდებარეობს მისამართზე: 43 rue Sainte Claire, Clermont-Ferrand. აერთიანებს რეგიონის მართლმადიდებელ მრევლს ერთიან ლოცვაში.</p>
+          <p style="margin-bottom: 10px;"><strong>• მფარველი წმინდანები :</strong> წმიდა ნიკოლოზ საკვირველთმოქმედი და წმიდა რადეგონდა, ფრანკთა დედოფალი.</p>
+          <p><strong>• ღვთისმსახურება :</strong> ყოველ კვირას: ცისკარი 09:30 საათზე, საღმრთო ლიტურგია 10:30 საათზე.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. PAGE CALENDRIER & AGENDA ==================== -->
+    <section id="page-calendar" class="page-section">
+      <h1 class="section-title"><span>📅</span> <span data-i18n="calendar_title">Calendrier des Saints &amp; Agenda</span></h1>
+      <p class="section-subtitle" data-i18n="calendar_subtitle">Synaxaire orthodoxe quotidien (Source : Doxologia.ro) et calendrier complet des célébrations paroissiales.</p>
+
+      <div class="calendar-header-box">
+        <div>
+          <div style="font-size: 0.85rem; color: var(--gold-primary); text-transform: uppercase; font-weight: 700;" data-i18n="saints_today_label">Saints Célébrés Aujourd'hui</div>
+          <div id="calendarCurrentDateDisplay" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">6 Octobre</div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <label for="calendarDateSelector" style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="choose_date_label">Changer de date :</label>
+          <input type="date" id="calendarDateSelector" onchange="onDatePickerChange(this.value)" style="padding: 6px 12px; background: #070d18; border: 1px solid var(--border-color); color: #fff; border-radius: 6px; font-size: 0.9rem;">
+          <a href="https://doxologia.ro/calendar-ortodox" target="_blank" rel="noopener noreferrer" class="doxologia-link-btn" title="Ouvrir le calendrier sur Doxologia.ro">
+            <span>📖</span> <span>Doxologia.ro</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="saints-today-card">
+        <h2 id="calendarSaintsTitle" style="color: var(--gold-light); font-size: 1.4rem; margin-bottom: 8px;">Saint Apôtre Thomas</h2>
+        <p id="calendarSaintsDetails" style="font-size: 1.05rem; color: #e2e8f0; line-height: 1.6;">Saint Apôtre Thomas; Sainte Martyre Érotiïde.</p>
+        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+          <div class="fasting-badge" id="calendarFastingRule">
+            <span>🐟</span> <span id="fastingText">Dezlegare la pește / Dispense de poisson</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="calendarReadings">
+            <strong>Lectures du jour :</strong> Épître aux Corinthiens &amp; Évangile selon Saint Luc
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🔍</span> <span data-i18n="search_saint_title">Vérification de fête &amp; Fêtes patronales majeures</span></div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;" data-i18n="search_saint_desc">Trouvez la date de célébration de votre saint patron :</p>
+        <div class="grid-3">
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">6 Décembre / Decembrie</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_nicolas_desc">Saint Nicolas le Thaumaturge (Hramul Bisericii)</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">13 Août / August</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_radegonde_desc">Sainte Radegonde, reine des Francs</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">14 Octobre / Octombrie</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_parascheva_desc">Sainte Paraschève de Iași (Ocrotitoarea Moldovei)</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">26 Octobre / Octombrie</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_dimitrie_desc">Saint Démétrios le Grand Martyr</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">8 Novembre / Noiembrie</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_archangels_desc">Saints Archanges Michel et Gabriel</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);">30 Novembre / Noiembrie</strong>
+            <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_andrei_desc">Saint Apôtre André, premier appelé</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agenda officiel de la paroisse : Iframe Google Calendar responsive -->
+      <div class="card">
+        <div class="card-title"><span>📆</span> <span data-i18n="agenda_iframe_title">Agenda Officiel des Offices &amp; Événements</span></div>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;" data-i18n="agenda_iframe_desc">Consultez l'agenda en temps réel des liturgies, fêtes de la paroisse et réunions communautaires :</p>
+        
+        <div style="width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); background: #ffffff;">
+          <iframe src="https://calendar.google.com/calendar/embed?src=clermont%40mitropolia.eu&ctz=Europe%2FParis&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0" style="border: 0; width: 100%; height: 500px; display: block;" frameborder="0" scrolling="no" loading="lazy"></iframe>
+        </div>
+        
+        <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
+          <span>Lien direct vers l'agenda paroissial original : </span>
+          <a href="https://www.clermont.mitropolia.eu/Calendrier/Calendrier.html" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light);">Consulter la source originale</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. PAGE HISTORIQUE & PAROISSE ==================== -->
+    <section id="page-history" class="page-section">
+      <h1 class="section-title"><span>📜</span> <span data-i18n="history_title">Historique &amp; Paroisse</span></h1>
+      <p class="section-subtitle" data-i18n="history_subtitle">La naissance, les saints protecteurs et l'enracinement de notre communauté en Auvergne.</p>
+
+      <div class="card">
+        <div class="card-title"><span>🏛️</span> <span data-i18n="history_church_title">L'Église du 43 rue Sainte Claire</span></div>
+        <p data-i18n="history_church_p1">Fondée pour rassembler les fidèles orthodoxes de Clermont-Ferrand et de toute la région Auvergne, notre paroisse a franchi une étape historique avec l'acquisition et la restauration du lieu de culte situé au 43 rue Sainte Claire. Ce bâtiment de caractère, construit en pierres de taille locales issues du patrimoine volcanique auvergnat, a été aménagé dans le strict respect de la tradition architecturale et liturgique orthodoxe.</p>
+        <p style="margin-top: 12px;" data-i18n="history_church_p2">À l'intérieur, l'espace sacré est ordonné autour du chœur, du sanctuaire et de la Sainte Iconostase qui sépare le Saint des Saints de la nef, ornée d'icônes du Christ Pantocrator, de la Très Sainte Mère de Dieu et des saints vénérés.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span>☦</span> <span data-i18n="history_patron1_title">Saint Nicolas le Thaumaturge</span></div>
+          <p data-i18n="history_patron1_text">Archevêque de Myre en Lycie au IVe siècle, Saint Nicolas est le premier protecteur de notre communauté paroissiale. Défenseur de la foi orthodoxe et protecteur des pauvres, sa fête est célébrée solennellement le 6 décembre.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>👑</span> <span data-i18n="history_patron2_title">Sainte Radegonde de Poitiers</span></div>
+          <p data-i18n="history_patron2_text">Princesse de Thuringe devenue reine des Francs au VIe siècle, Sainte Radegonde quitta la cour pour consacrer sa vie au Christ et au soin des pauvres. Sa mémoire est fêtée le 13 août.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🤝</span> <span data-i18n="history_community_title">Une Communauté Multiculturelle et Unie</span></div>
+        <p data-i18n="history_community_text">Notre paroisse réunit des fidèles roumains, français, géorgiens, grecs, ukrainiens et d'autres origines dans la paix, la prière et l'amour fraternel.</p>
+      </div>
+    </section>
+
+    <!-- ==================== 5. PAGE VIE LITURGIQUE & SPIRITUALITÉ ==================== -->
+    <section id="page-liturgy" class="page-section">
+      <h1 class="section-title"><span>🕯️</span> <span data-i18n="liturgy_title">Vie Liturgique &amp; Sacrements</span></h1>
+      <p class="section-subtitle" data-i18n="liturgy_subtitle">Les Mystères de l'Église orthodoxe, la prière et la préparation aux sacrements.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span>🍞</span> <span data-i18n="liturgy_communion_title">La Divine Liturgie &amp; l'Eucharistie</span></div>
+          <p data-i18n="liturgy_communion_text">Cœur battant de la vie chrétienne, la Divine Liturgie nous unit au Corps et au Sang du Christ. Pour communier, les fidèles orthodoxes se préparent par le jeûne eucharistique (à jeun depuis minuit), la prière fervente et le sacrement de la Confession.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>💧</span> <span data-i18n="liturgy_baptism_title">Saint Baptême &amp; Chrismation</span></div>
+          <p data-i18n="liturgy_baptism_text">Le baptême par triple immersion au nom du Père, du Fils et du Saint-Esprit marque la nouvelle naissance de l'enfant ou de l'adulte en Christ. Veuillez contacter le prêtre au moins un mois à l'avance pour fixer la date.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>💍</span> <span data-i18n="liturgy_marriage_title">Sainte Taine du Mariage (Couronnement)</span></div>
+          <p data-i18n="liturgy_marriage_text">Le mariage orthodoxe est un couronnement dans l'amour éternel et une sanctification du couple comme petite église domestique, célébré en dehors des périodes de carême.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>🕊️</span> <span data-i18n="liturgy_confession_title">Sainte Confession &amp; Pénitence</span></div>
+          <p data-i18n="liturgy_confession_text">Le sacrement de la réconciliation avec Dieu est dispensé par le Père Gérard Reynaud avant les offices ou sur rendez-vous.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🕯️</span> <span data-i18n="liturgy_memorial_title">Offices pour les Défunts (Parastase &amp; Panikhide)</span></div>
+        <p data-i18n="liturgy_memorial_text">La paroisse prie continuellement pour le repos des âmes des fidèles défunts. Les offices de commémoration avec la coliva traditionnelle sont célébrés les samedis et après les liturgies dominicales.</p>
+      </div>
+    </section>
+
+    <!-- ==================== 6. PAGE HORAIRES DES OFFICES ==================== -->
+    <section id="page-schedule" class="page-section">
+      <h1 class="section-title"><span>⏰</span> <span data-i18n="schedule_title">Horaires des Offices</span></h1>
+      <p class="section-subtitle" data-i18n="schedule_subtitle">Rendez-vous liturgiques hebdomadaires et fêtes solennelles à Clermont-Ferrand.</p>
+
+      <div class="card">
+        <div class="card-title"><span>📅</span> <span data-i18n="schedule_weekly_title">Rythme Hebdomadaire Habituel</span></div>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th data-i18n="th_day">Jour</th>
+              <th data-i18n="th_hour">Heure</th>
+              <th data-i18n="th_office">Office Liturgique</th>
+              <th data-i18n="th_details">Langues &amp; Précisions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong data-i18n="day_sunday">Dimanche</strong></td>
+              <td>09h30</td>
+              <td><strong data-i18n="office_matins">Matines (Utrenia / ცისკარი)</strong></td>
+              <td data-i18n="desc_matins">Psaumes, louanges et préparation à la Liturgie</td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="day_sunday">Dimanche</strong></td>
+              <td>10h30</td>
+              <td><strong style="color: var(--gold-light);" data-i18n="office_liturgy">Sainte &amp; Divine Liturgie</strong></td>
+              <td data-i18n="desc_liturgy">Français, Roumain, Géorgien • Agapes fraternelles après l'office</td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="day_saturday">Samedi soir</strong></td>
+              <td>18h00</td>
+              <td><strong data-i18n="office_vespers">Vêpres (Vecernia / მწუხრი)</strong></td>
+              <td data-i18n="desc_vespers">Office du soir suivi des Confessions</td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="day_feasts">Grandes Fêtes</strong></td>
+              <td>10h00</td>
+              <td><strong data-i18n="office_feast">Liturgie de fête en semaine</strong></td>
+              <td data-i18n="desc_feast">Noël, Théophanie, Annonciation, Ascension, etc.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span>🌟</span> <span data-i18n="schedule_feasts_title">Grandes Fêtes Patronales (Hram)</span></div>
+          <p style="margin-bottom: 8px;"><strong>• 6 Décembre :</strong> Saint Nicolas le Grand Thaumaturge (Fête principale de la paroisse).</p>
+          <p style="margin-bottom: 8px;"><strong>• 13 Août :</strong> Sainte Radegonde de Poitiers (Fête patronale d'été).</p>
+          <p><strong>• Pâques / Învierea Domnului / აღდგომა :</strong> Sainte Nuit Pascale avec procession, matines et Divine Liturgie pascale.</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span>ℹ️</span> <span data-i18n="schedule_note_title">Informations Importantes</span></div>
+          <p data-i18n="schedule_note_text">Les horaires peuvent exceptionnellement varier selon les fêtes mobiles. N'hésitez pas à vérifier l'agenda en ligne ou à appeler le Père Gérard Reynaud avant votre déplacement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. PAGE GALERIE PHOTOS & TRAVAUX ==================== -->
+    <section id="page-gallery" class="page-section">
+      <h1 class="section-title"><span>🖼️</span> <span data-i18n="gallery_title">Galerie Photos &amp; Travaux</span></h1>
+      <p class="section-subtitle" data-i18n="gallery_subtitle">Images de notre église, des travaux de restauration et de la vie de notre communauté.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="https://lh3.googleusercontent.com/d/1C3ElaDXuIxRvy29Z5QvA9ZRr1eQjGXR3" 
+               alt="Façade extérieure de l'Église 43 rue Sainte Claire" 
+               class="gallery-thumb" 
+               onerror="this.onerror=null; this.src='EORC.jpg';">
+          <div class="gallery-caption">
+            <strong style="color: var(--gold-light);" data-i18n="photo1_title">L'Église 43 rue Sainte Claire</strong>
+            <p data-i18n="photo1_desc">Vue extérieure de notre église en pierre volcanique avec les récents travaux d'aménagement du muret et de clôture.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <img src="EORC.jpg" alt="L'abside et les baies gothiques de l'église" class="gallery-thumb" style="object-position: right center;">
+          <div class="gallery-caption">
+            <strong style="color: var(--gold-light);" data-i18n="photo2_title">Chevet et fenêtres gothiques</strong>
+            <p data-i18n="photo2_desc">Détails des contreforts en pierre d'andésite sombre et des vitraux du sanctuaire.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-thumb" style="display: flex; align-items: center; justify-content: center; background: #131d31; color: var(--gold-primary); font-size: 3rem;">☦</div>
+          <div class="gallery-caption">
+            <strong style="color: var(--gold-light);" data-i18n="photo3_title">Sainte Iconostase</strong>
+            <p data-i18n="photo3_desc">L'iconostase traditionnelle sculptée en bois et ses icônes byzantines peintes pour la prière.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-thumb" style="display: flex; align-items: center; justify-content: center; background: #131d31; color: var(--gold-primary); font-size: 3rem;">🕊️</div>
+          <div class="gallery-caption">
+            <strong style="color: var(--gold-light);" data-i18n="photo4_title">Agapes Fraternelles</strong>
+            <p data-i18n="photo4_desc">Moments chaleureux de partage, repas et convivialité entre paroissiens à l'issue de la Sainte Liturgie.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. PAGE DONS & SOUTIEN ==================== -->
+    <section id="page-donations" class="page-section">
+      <h1 class="section-title"><span>🤝</span> <span data-i18n="donations_title">Dons &amp; Soutien à la Paroisse</span></h1>
+      <p class="section-subtitle" data-i18n="donations_subtitle">Votre générosité permet de financer les travaux d'embellissement, l'entretien du lieu de culte et la mission pastorale.</p>
+
+      <div class="card">
+        <div class="card-title"><span>🏗️</span> <span data-i18n="donations_work_title">Travaux de Rénovation de l'Église</span></div>
+        <p data-i18n="donations_work_desc">Depuis l'emménagement au 43 rue Sainte Claire, d'importants travaux de maçonnerie, toiture, isolation, peinture et aménagement intérieur ont été réalisés grâce à la mobilisation des paroissiens et des bénévoles. Votre soutien financier est précieux pour continuer à préserver et embellir la maison de Dieu.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><span>💳</span> <span data-i18n="donations_bank_title">Par Virement Bancaire (IBAN)</span></div>
+          <p style="margin-bottom: 12px;" data-i18n="donations_bank_desc">Vous pouvez effectuer un virement bancaire directement sur le compte officiel de l'association paroissiale :</p>
+          <div style="background: #070d18; padding: 14px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border: 1px solid var(--border-color); color: var(--gold-light); word-break: break-all;">
+            <strong>Titulaire :</strong> Paroisse Orthodoxe Saint Nicolas et Sainte Radegonde<br>
+            <strong>Banque :</strong> Crédit Mutuel / Agence Clermont-Ferrand<br>
+            <strong>IBAN :</strong> FR76 1027 8027 4600 0204 4330 156<br>
+            <strong>BIC / SWIFT :</strong> CMCIFR2A
+          </div>
+          <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);" data-i18n="donations_ref">Mentionnez dans le motif : « Don Travaux Église » ou « Don Paroisse ».</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>✉️</span> <span data-i18n="donations_cheque_title">Par Chèque ou Espèces</span></div>
+          <p style="margin-bottom: 10px;" data-i18n="donations_cheque_desc"><strong>Chèque :</strong> À l'ordre de « <em>Paroisse Orthodoxe Saint Nicolas</em> » à remettre lors des offices ou à envoyer par courrier à l'adresse officielle :</p>
+          <div style="background: #070d18; padding: 14px; border-radius: 6px; border: 1px solid var(--border-color); color: #fff;">
+            Paroisse Orthodoxe Saint Nicolas &amp; Sainte Radegonde<br>
+            43 rue Sainte Claire<br>
+            63000 Clermont-Ferrand, FRANCE
+          </div>
+          <p style="margin-top: 12px; font-size: 0.85rem; color: var(--text-muted);" data-i18n="donations_tax">Un reçu fiscal ouvrant droit à une réduction d'impôt en France (loi 1905 / associations cultuelles) peut vous être délivré sur simple demande.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 9. PAGE CONTACT & ACCÈS ==================== -->
+    <section id="page-contact" class="page-section">
+      <h1 class="section-title"><span>📍</span> <span data-i18n="contact_title">Contact &amp; Accès</span></h1>
+      <p class="section-subtitle" data-i18n="contact_subtitle">Toutes les coordonnées officielles, les numéros de téléphone et le plan d'accès interactif.</p>
+
+      <div class="grid-2">
+        <!-- Informations officielles requises -->
+        <div class="card">
+          <div class="card-title"><span>ℹ️</span> <span data-i18n="contact_coords_title">Coordonnées Officielles</span></div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-info">
+              <strong data-i18n="contact_addr_label">Adresse de l'Église :</strong>
+              <span>43 rue Sainte Claire, 63000 Clermont-Ferrand</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-info">
+              <strong data-i18n="contact_landline_label">Téléphone Fixe de la Paroisse :</strong>
+              <a href="tel:0473370155">04 73 37 01 55</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✝</div>
+            <div class="contact-info">
+              <strong>Pr. Gérard REYNAUD (Prêtre Recteur) :</strong>
+              <a href="tel:0676470355">06 76 47 03 55</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">👤</div>
+            <div class="contact-info">
+              <strong>Ciprian POPA :</strong>
+              <a href="tel:0618121569">06 18 12 15 69</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">👤</div>
+            <div class="contact-info">
+              <strong>Ioan SARBAN :</strong>
+              <a href="tel:0601234322">06 01 23 43 22</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-info">
+              <strong data-i18n="contact_email_label">Courrier Électronique (Email) :</strong>
+              <a href="mailto:clermont@mitropolia.eu">clermont@mitropolia.eu</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Réseaux Sociaux & Accès -->
+        <div class="card">
+          <div class="card-title"><span>🌐</span> <span data-i18n="contact_social_title">Réseaux Sociaux &amp; Communauté</span></div>
+          <p style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-muted);" data-i18n="contact_social_desc">Retrouvez nos actualités, diffusions en direct et photos des fêtes sur nos comptes officiels :</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <a href="https://www.facebook.com/profile.php?id=100010328286013" target="_blank" rel="noopener noreferrer" class="btn-social btn-facebook">
+              <span>📘</span> <span>Facebook : « Biserica Clermont »</span>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCNFDSNht7I1Qj8et4efKehg" target="_blank" rel="noopener noreferrer" class="btn-social btn-youtube">
+              <span>▶️</span> <span>Chaîne YouTube de la Paroisse</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 24px; padding: 14px; background: #070d18; border-radius: 8px; border: 1px solid var(--border-color);">
+            <strong style="color: var(--gold-light);" data-i18n="contact_transport_title">Transports &amp; Stationnement :</strong>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;" data-i18n="contact_transport_desc">Accessible en Bus T2C (Arrêts proches : Delille Montlosier / Sainte-Claire). Parking Delille à proximité.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte Interactive Google Maps Intégrée Exactement et bien contenue dans la page Contact -->
+      <div class="card" style="padding: 18px;">
+        <div class="card-title" style="margin-bottom: 12px;"><span>🗺️</span> <span data-i18n="contact_map_title">Plan d'Accès Google Maps (43 rue Sainte Claire)</span></div>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.456639427201!2d3.078771811506428!3d45.78207867096022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f71bde9c055229%3A0x3e2e940d0b8a18be!2s43%20Rue%20Sainte-Claire%2C%2063000%20Clermont-Ferrand!5e0!3m2!1sfr!2sfr!4v1770473569082!5m2!1sfr!2sfr" 
+                  width="100%" 
+                  height="440" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       SCRIPTS JAVASCRIPT EMBARQUÉS - NAVIGATION SPA & I18N
+       =================================================================== -->
+  <script>
+    /* =================================================================
+       1. DICTIONNAIRE I18N COMPLET : FRANÇAIS (FR), ROUMAIN (RO), GÉORGIEN (KA)
+       ================================================================= */
+    const translations = {
+      fr: {
+        brand_title: "Église Orthodoxe",
+        brand_patrons: "St Nicolas & Ste Radegonde<br>Clermont-Ferrand",
+        nav_home: "Accueil",
+        nav_presentation: "Présentation / Slideshow",
+        nav_calendar: "Calendrier & Agenda",
+        nav_history: "Historique & Paroisse",
+        nav_liturgy: "Vie Liturgique",
+        nav_schedule: "Horaires des Offices",
+        nav_gallery: "Galerie Photos",
+        nav_donations: "Dons & Soutien",
+        nav_contact: "Contact & Accès",
+
+        hero_title: "Bienvenue à l'Église Orthodoxe de Clermont-Ferrand",
+        hero_subtitle: "Paroisse « Saint Nicolas le Thaumaturge & Sainte Radegonde »",
+        home_banner_title: "Lieu de Culte & Vie Paroissiale",
+        home_banner_text: "Notre église est installée au 43 rue Sainte Claire à Clermont-Ferrand. Toute la communauté orthodoxe roumaine, francophone, géorgienne et de tous horizons s'y réunit dans la prière fraternelle, la communion et la paix du Christ.",
+        home_service_title: "Prochaine Divine Liturgie",
+        home_service_time: "Chaque Dimanche matin :<br>• 09h30 : Matines (Utrenia)<br>• 10h30 : Sainte et Divine Liturgie",
+        home_service_desc: "Les offices sont célébrés principalement en français et en roumain, avec des prières en géorgien et slavon pour notre communauté universelle.",
+        home_saints_card_title: "Saint du Jour & Calendrier",
+        home_about_title: "Une communauté vivante et fraternelle",
+        home_about_text: "La paroisse orthodoxe de Clermont-Ferrand témoigne de la tradition millénaire de l'Église une, sainte, catholique et apostolique. Elle rassemble les fidèles d'Auvergne et accueille chacun avec amour.",
+        btn_see_schedule: "Voir tous les horaires des offices →",
+        btn_see_calendar: "Consulter l'agenda et le calendrier complet →",
+        btn_presentation: "Découvrir la Présentation / Slideshow",
+        btn_contact_us: "Nous contacter & Venir nous voir",
+
+        presentation_title: "Présentation / Slideshow",
+        presentation_subtitle: "Découvrez notre paroisse, l'histoire de l'église, ses saints protecteurs et sa communauté en projection plein écran.",
+        slide_select_label: "Sélection de Diapositive :",
+        btn_fullscreen: "Mode Plein Écran",
+
+        calendar_title: "Calendrier des Saints & Agenda",
+        calendar_subtitle: "Synaxaire orthodoxe quotidien (Source : Doxologia.ro) et calendrier complet des célébrations paroissiales.",
+        saints_today_label: "Saints Célébrés Aujourd'hui",
+        choose_date_label: "Changer de date :",
+        search_saint_title: "Vérification de fête & Fêtes patronales majeures",
+        search_saint_desc: "Trouvez la date de célébration de votre saint patron :",
+        patron_nicolas_desc: "Saint Nicolas le Thaumaturge (Fête patronale)",
+        patron_radegonde_desc: "Sainte Radegonde, reine des Francs",
+        patron_parascheva_desc: "Sainte Paraschève de Iași",
+        patron_dimitrie_desc: "Saint Démétrios le Grand Martyr",
+        patron_archangels_desc: "Saints Archanges Michel et Gabriel",
+        patron_andrei_desc: "Saint Apôtre André, premier appelé",
+        agenda_iframe_title: "Agenda Officiel des Offices & Événements",
+        agenda_iframe_desc: "Consultez l'agenda en temps réel des liturgies, fêtes de la paroisse et réunions communautaires :",
+
+        history_title: "Historique & Paroisse",
+        history_subtitle: "La naissance, les saints protecteurs et l'enracinement de notre communauté en Auvergne.",
+        history_church_title: "L'Église du 43 rue Sainte Claire",
+        history_church_p1: "Fondée pour rassembler les fidèles orthodoxes de Clermont-Ferrand et de toute la région Auvergne, notre paroisse a franchi une étape historique avec l'acquisition et la restauration du lieu de culte situé au 43 rue Sainte Claire. Ce bâtiment de caractère, construit en pierres de taille issues du patrimoine volcanique auvergnat, a été aménagé dans le respect de la tradition liturgique orthodoxe.",
+        history_church_p2: "À l'intérieur, l'espace sacré est ordonné autour du chœur, du sanctuaire et de la Sainte Iconostase qui sépare le Saint des Saints de la nef.",
+        history_patron1_title: "Saint Nicolas le Thaumaturge",
+        history_patron1_text: "Archevêque de Myre en Lycie au IVe siècle, Saint Nicolas est le premier protecteur de notre communauté paroissiale. Sa fête est célébrée avec solennité le 6 décembre.",
+        history_patron2_title: "Sainte Radegonde de Poitiers",
+        history_patron2_text: "Princesse de Thuringe devenue reine des Francs au VIe siècle, Sainte Radegonde incarne la sainteté des racines chrétiennes de notre terre. Sa mémoire est fêtée le 13 août.",
+        history_community_title: "Une Communauté Multiculturelle et Unie",
+        history_community_text: "Notre paroisse est le reflet vivant de l'universalité de l'Orthodoxie : elle réunit des fidèles roumains, français, géorgiens, grecs, ukrainiens et d'autres origines.",
+
+        liturgy_title: "Vie Liturgique & Sacrements",
+        liturgy_subtitle: "Les Mystères de l'Église orthodoxe, la prière et la préparation aux sacrements.",
+        liturgy_communion_title: "La Divine Liturgie & l'Eucharistie",
+        liturgy_communion_text: "Cœur battant de la vie chrétienne, la Divine Liturgie nous unit au Christ. Pour communier, les fidèles se préparent par le jeûne eucharistique (à jeun depuis minuit), la prière et la confession.",
+        liturgy_baptism_title: "Saint Baptême & Chrismation",
+        liturgy_baptism_text: "Le baptême par triple immersion au nom du Père, du Fils et du Saint-Esprit marque la nouvelle naissance de l'enfant ou de l'adulte en Christ.",
+        liturgy_marriage_title: "Sainte Taine du Mariage (Couronnement)",
+        liturgy_marriage_text: "Le mariage orthodoxe est un couronnement dans l'amour éternel et une sanctification du couple comme petite église domestique.",
+        liturgy_confession_title: "Sainte Confession & Pénitence",
+        liturgy_confession_text: "Le sacrement de la réconciliation est dispensé par le Père Gérard Reynaud, avant les offices ou sur rendez-vous.",
+        liturgy_memorial_title: "Offices pour les Défunts (Parastase & Panikhide)",
+        liturgy_memorial_text: "La paroisse prie pour le repos des âmes des défunts. Les offices de commémoration avec la coliva sont célébrés les samedis et après les liturgies.",
+
+        schedule_title: "Horaires des Offices",
+        schedule_subtitle: "Rendez-vous liturgiques hebdomadaires et fêtes solennelles à Clermont-Ferrand.",
+        schedule_weekly_title: "Rythme Hebdomadaire Habituel",
+        th_day: "Jour",
+        th_hour: "Heure",
+        th_office: "Office Liturgique",
+        th_details: "Langues & Précisions",
+        day_sunday: "Dimanche",
+        day_saturday: "Samedi soir",
+        day_feasts: "Grandes Fêtes",
+        office_matins: "Matines (Utrenia)",
+        office_liturgy: "Sainte & Divine Liturgie",
+        office_vespers: "Vêpres (Vecernia)",
+        office_feast: "Liturgie de fête en semaine",
+        desc_matins: "Psaumes, louanges et préparation à la Liturgie",
+        desc_liturgy: "Français, Roumain, Géorgien • Agapes fraternelles après l'office",
+        desc_vespers: "Office du soir suivi des Confessions",
+        desc_feast: "Noël, Théophanie, Annonciation, Ascension, etc.",
+        schedule_feasts_title: "Grandes Fêtes Patronales (Hram)",
+        schedule_note_title: "Informations Importantes",
+        schedule_note_text: "Les horaires peuvent exceptionnellement varier selon les fêtes mobiles. N'hésitez pas à vérifier l'agenda en ligne ou à appeler le Père Gérard Reynaud.",
+
+        gallery_title: "Galerie Photos & Travaux",
+        gallery_subtitle: "Images de notre église, des travaux de restauration et de la vie de notre communauté.",
+        photo1_title: "L'Église 43 rue Sainte Claire",
+        photo1_desc: "Vue extérieure de notre église en pierre volcanique avec les récents travaux d'aménagement du muret et de clôture.",
+        photo2_title: "Chevet et fenêtres gothiques",
+        photo2_desc: "Détails des contreforts en pierre d'andésite sombre et des vitraux du sanctuaire.",
+        photo3_title: "Sainte Iconostase",
+        photo3_desc: "L'iconostase traditionnelle sculptée en bois et ses icônes byzantines peintes pour la prière.",
+        photo4_title: "Agapes Fraternelles",
+        photo4_desc: "Moments chaleureux de partage, repas et convivialité entre paroissiens à l'issue de la Sainte Liturgie.",
+
+        donations_title: "Dons & Soutien à la Paroisse",
+        donations_subtitle: "Votre générosité permet de financer les travaux d'embellissement, l'entretien du lieu de culte et la mission pastorale.",
+        donations_work_title: "Travaux de Rénovation de l'Église",
+        donations_work_desc: "D'importants travaux de maçonnerie, toiture, isolation, peinture et aménagement intérieur ont été réalisés grâce à la mobilisation des paroissiens.",
+        donations_bank_title: "Par Virement Bancaire (IBAN)",
+        donations_bank_desc: "Vous pouvez effectuer un virement bancaire directement sur le compte officiel de l'association paroissiale :",
+        donations_ref: "Mentionnez dans le motif : « Don Travaux Église » ou « Don Paroisse ».",
+        donations_cheque_title: "Par Chèque ou Espèces",
+        donations_cheque_desc: "Chèque : À l'ordre de « Paroisse Orthodoxe Saint Nicolas » à remettre lors des offices ou par courrier.",
+        donations_tax: "Un reçu fiscal ouvrant droit à une réduction d'impôt en France peut vous être délivré sur simple demande.",
+
+        contact_title: "Contact & Accès",
+        contact_subtitle: "Toutes les coordonnées officielles, les numéros de téléphone et le plan d'accès interactif.",
+        contact_coords_title: "Coordonnées Officielles",
+        contact_addr_label: "Adresse de l'Église :",
+        contact_landline_label: "Téléphone Fixe de la Paroisse :",
+        contact_email_label: "Courrier Électronique (Email) :",
+        contact_social_title: "Réseaux Sociaux & Communauté",
+        contact_social_desc: "Retrouvez nos actualités, diffusions en direct et photos des fêtes sur nos comptes officiels :",
+        contact_transport_title: "Transports & Stationnement :",
+        contact_transport_desc: "Accessible en Bus T2C (Arrêts : Delille Montlosier / Sainte-Claire). Parking Delille à proximité.",
+        contact_map_title: "Plan d'Accès Google Maps (43 rue Sainte Claire)"
+      },
+
+      ro: {
+        brand_title: "Biserica Ortodoxă",
+        brand_patrons: "Sf. Nicolae & Sf. Radegonda<br>Clermont-Ferrand",
+        nav_home: "Acasă",
+        nav_presentation: "Prezentare / Slideshow",
+        nav_calendar: "Calendar & Agendă",
+        nav_history: "Istoric & Parohie",
+        nav_liturgy: "Viața Liturgică",
+        nav_schedule: "Programul Slujbelor",
+        nav_gallery: "Galerie Foto",
+        nav_donations: "Donații & Sprijin",
+        nav_contact: "Contact & Localizare",
+
+        hero_title: "Bine ați venit la Biserica Ortodoxă din Clermont-Ferrand",
+        hero_subtitle: "Parohia « Sfântul Ierarh Nicolae & Sfânta Radegonda »",
+        home_banner_title: "Lăcaș de Închinare & Viață Parohială",
+        home_banner_text: "Biserica noastră se află la adresa 43 rue Sainte Claire în Clermont-Ferrand. Întreaga comunitate ortodoxă românească, franceză, georgiană și de pretutindeni se întrunește aici în rugăciune frățească și pace.",
+        home_service_title: "Următoarea Sfântă Liturghie",
+        home_service_time: "În fiecare Duminică dimineața :<br>• 09:30 : Utrenia<br>• 10:30 : Sfânta și Dumnezeiasca Liturghie",
+        home_service_desc: "Slujbele sunt săvârșite în română și franceză, alături de rugăciuni în georgiană și slavonă pentru întreaga comunitate.",
+        home_saints_card_title: "Sfinții Zilei & Calendar",
+        home_about_title: "O comunitate vie și primitoare",
+        home_about_text: "Parohia ortodoxă din Clermont-Ferrand mărturisește credința apostolică neschimbată și îi primește cu dragoste pe toți credincioșii din regiunea Auvergne.",
+        btn_see_schedule: "Vezi tot programul slujbelor →",
+        btn_see_calendar: "Vezi calendarul ortodox complet →",
+        btn_presentation: "Descoperă Prezentarea / Slideshow",
+        btn_contact_us: "Contactează-ne & Vino la biserică",
+
+        presentation_title: "Prezentare / Slideshow",
+        presentation_subtitle: "Descoperiți parohia noastră, istoricul bisericii, sfinții ocrotitori și viața comunității în ecran complet.",
+        slide_select_label: "Alege Diapozitivul :",
+        btn_fullscreen: "Mod Ecran Complet",
+
+        calendar_title: "Calendar Creștin Ortodox & Agendă",
+        calendar_subtitle: "Sinaxarul ortodox zilnic (Sursa : Doxologia.ro) și agenda completă a slujbelor parohiale.",
+        saints_today_label: "Sfinții Pomeniți Astăzi",
+        choose_date_label: "Schimbă data :",
+        search_saint_title: "Hramurile Parohiei și Mari Sărbători",
+        search_saint_desc: "Află data prăznuirii sfântului tău ocrotitor :",
+        patron_nicolas_desc: "Sfântul Ierarh Nicolae (Hramul Bisericii)",
+        patron_radegonde_desc: "Sfânta Radegonda, regina francilor",
+        patron_parascheva_desc: "Sfânta Cuvioasă Parascheva de la Iași",
+        patron_dimitrie_desc: "Sfântul Mare Mucenic Dimitrie",
+        patron_archangels_desc: "Soborul Sfinților Arhangheli Mihail și Gavriil",
+        patron_andrei_desc: "Sfântul Apostol Andrei, Ocrotitorul României",
+        agenda_iframe_title: "Agenda Oficială a Slujbelor",
+        agenda_iframe_desc: "Consultați în timp real calendarul slujbelor și evenimentelor comunității :",
+
+        history_title: "Istoric & Parohie",
+        history_subtitle: "Înființarea parohiei, sfinții ocrotitori și mărturia ortodoxă în Auvergne.",
+        history_church_title: "Biserica din 43 rue Sainte Claire",
+        history_church_p1: "Înființată pentru a aduna credincioșii ortodocși din Clermont-Ferrand și din toată regiunea Auvergne, parohia noastră a atins un moment de referință prin achiziționarea și restaurarea bisericii din 43 rue Sainte Claire.",
+        history_church_p2: "În interior, spațiul sacru este orânduit după rânduiala ortodoxă tradițională, având catapeteasma sculptată cu sfintele icoane.",
+        history_patron1_title: "Sfântul Ierarh Nicolae",
+        history_patron1_text: "Arhiepiscopul Mirelor Lichiei, apărător al dreptei credințe și mare făcător de minuni, ocrotitorul de căpătâi al parohiei noastre prăznuit la 6 Decembrie.",
+        history_patron2_title: "Sfânta Radegonda de Poitiers",
+        history_patron2_text: "Regina francilor care s-a dăruit slujirii săracilor și rugăciunii, ocrotitoarea istorică locală pomenită la 13 August.",
+        history_community_title: "O Comunitate Frățească Unită",
+        history_community_text: "Parohia noastră adună credincioși români, francezi, georgieni și din alte neamuri într-o singură inimă în Hristos Domnul.",
+
+        liturgy_title: "Viața Liturgică & Sfintele Taine",
+        liturgy_subtitle: "Tainele Bisericii Ortodoxe, rugăciunea și pregătirea pentru sfintele slujbe.",
+        liturgy_communion_title: "Sfânta Liturghie & Împărtășania",
+        liturgy_communion_text: "Centrul vieții noastre este Sfânta Liturghie. Credincioșii se pregătesc pentru Sfânta Împărtășanie prin post, rugăciune și Taina Spovedaniei.",
+        liturgy_baptism_title: "Taina Sfântului Botez",
+        liturgy_baptism_text: "Botezul prin întreită afundare este nașterea din nou din apă și din Duh.",
+        liturgy_marriage_title: "Taina Sfintei Cununii",
+        liturgy_marriage_text: "Cununia este binecuvântarea iubirii și unirea soților în Biserică.",
+        liturgy_confession_title: "Taina Spovedaniei",
+        liturgy_confession_text: "Mărturisirea păcatelor se face cu părintele paroh Gérard Reynaud, înainte de slujbe sau prin programare.",
+        liturgy_memorial_title: "Pomenirea Morților (Parastasul)",
+        liturgy_memorial_text: "Parohia se roagă neîncetat pentru sufletele celor adormiți.",
+
+        schedule_title: "Programul Slujbelor",
+        schedule_subtitle: "Programul săptămânal al slujbelor și marile sărbători la Clermont-Ferrand.",
+        schedule_weekly_title: "Rânduiala Săptămânală",
+        th_day: "Ziua",
+        th_hour: "Ora",
+        th_office: "Slujba",
+        th_details: "Limbă & Detalii",
+        day_sunday: "Duminică",
+        day_saturday: "Sâmbătă seara",
+        day_feasts: "Sărbători Mari",
+        office_matins: "Utrenia",
+        office_liturgy: "Sfânta și Dumnezeiasca Liturghie",
+        office_vespers: "Vecernia",
+        office_feast: "Liturghia de Sărbătoare",
+        desc_matins: "Rugăciuni, psalmi și pregătirea pentru Liturghie",
+        desc_liturgy: "Română, Franceză, Georgiană • Agapă frățească după slujbă",
+        desc_vespers: "Slujba de seară urmată de Taina Spovedaniei",
+        desc_feast: "Crăciunul, Boboteaza, Înălțarea, etc.",
+        schedule_feasts_title: "Hramurile Parohiei",
+        schedule_note_title: "Informații Utile",
+        schedule_note_text: "Programul poate suferi mici modificări în funcție de sărbători.",
+
+        gallery_title: "Galerie Foto & Lucrări",
+        gallery_subtitle: "Imagini cu biserica noastră, lucrările de restaurare și viața comunității.",
+        photo1_title: "Biserica 43 rue Sainte Claire",
+        photo1_desc: "Vedere exterioară a bisericii din piatră vulcanică și noile amenajări de împrejmuire.",
+        photo2_title: "Altarul și ferestrele gotice",
+        photo2_desc: "Detaliu al contraforților din piatră de andezit și vitraliilor din absidă.",
+        photo3_title: "Catapeteasma Bisericii",
+        photo3_desc: "Catapeteasma tradițională sculptată în lemn și icoanele bizantine pictate.",
+        photo4_title: "Agapa Frățească",
+        photo4_desc: "Momente de comuniune, bucurie și masă frățească după Sfânta Liturghie.",
+
+        donations_title: "Donații & Sprijin pentru Biserică",
+        donations_subtitle: "Dărnicia dumneavoastră susține lucrările de restaurare și cheltuielile de întreținere ale lăcașului sfânt.",
+        donations_work_title: "Lucrările de Renovare",
+        donations_work_desc: "Prin implicarea credincioșilor, biserica a beneficiat de lucrări de zidărie, acoperiș și amenajări.",
+        donations_bank_title: "Prin Transfer Bancar (IBAN)",
+        donations_bank_desc: "Puteți efectua transferul direct în contul asociației parohiale :",
+        donations_ref: "Menționați la detalii plată : « Donatii Biserica » sau « Donatii Lucrari ».",
+        donations_cheque_title: "Prin Cec sau Numerar",
+        donations_cheque_desc: "Cec în favoarea « Paroisse Orthodoxe Saint Nicolas » la biserică sau prin poștă.",
+        donations_tax: "Se poate elibera chitanță fiscală pentru deducere de impozit în Franța.",
+
+        contact_title: "Contact & Localizare",
+        contact_subtitle: "Toate datele oficiale de contact, numerele de telefon și harta Google Maps.",
+        contact_coords_title: "Date Oficiale de Contact",
+        contact_addr_label: "Adresa Bisericii :",
+        contact_landline_label: "Telefon Fix Parohie :",
+        contact_email_label: "Adresă Email :",
+        contact_social_title: "Rețele Sociale & Comunitate",
+        contact_social_desc: "Urmăriți noutățile și transmisiunile noastre pe canalele oficiale :",
+        contact_transport_title: "Transport & Parcări :",
+        contact_transport_desc: "Autobuz T2C (Stația Delille Montlosier / Sainte-Claire). Parcarea Delille în apropiere.",
+        contact_map_title: "Plan de Acces Google Maps (43 rue Sainte Claire)"
+      },
+
+      ka: {
+        brand_title: "მართლმადიდებლური ეკლესია",
+        brand_patrons: "წმ. ნიკოლოზი & წმ. რადეგონდა<br>კლერმონ-ფერანი",
+        nav_home: "მთავარი",
+        nav_presentation: "პრეზენტაცია / სლაიდშოუ",
+        nav_calendar: "კალენდარი & განრიგი",
+        nav_history: "ისტორია & სამრევლო",
+        nav_liturgy: "ლიტურგიკული ცხოვრება",
+        nav_schedule: "მსახურების განრიგი",
+        nav_gallery: "ფოტოგალერეა",
+        nav_donations: "შემოწირულობები",
+        nav_contact: "კონტაქტი & ლოკაცია",
+
+        hero_title: "კეთილი იყოს თქვენი მობრძანება კლერმონ-ფერანის მართლმადიდებლურ ტაძარში",
+        hero_subtitle: "წმიდა ნიკოლოზ საკვირველთმოქმედისა და წმიდა რადეგონდას სამრევლო",
+        home_banner_title: "სამლოცველო ადგილი და სამრევლო ცხოვრება",
+        home_banner_text: "ჩვენი ტაძარი მდებარეობს მისამართზე: 43 rue Sainte Claire, კლერმონ-ფერანი. ქართული, რუმინული და ფრანგული მართლმადიდებელი მრევლი იკრიბება ერთიან ლოცვასა და ქრისტეს მშვიდობაში.",
+        home_service_title: "მომავალი საღმრთო ლიტურგია",
+        home_service_time: "ყოველ კვირა დილით :<br>• 09:30 : ცისკარი<br>• 10:30 : საღმრთო ლიტურგია",
+        home_service_desc: "მსახურება აღესრულება ფრანგულ, რუმინულ და ქართულ ენებზე მთელი მრევლისთვის.",
+        home_saints_card_title: "დღის წმინდანი და კალენდარი",
+        home_about_title: "ცოცხალი და ძმური მრევლი",
+        home_about_text: "კლერმონ-ფერანის სამრევლო ამოწმებს ეკლესიის საუკუნოვან ტრადიციას და სიყვარულით იღებს ყველას.",
+        btn_see_schedule: "იხილეთ მსახურების სრული განრიგი →",
+        btn_see_calendar: "იხილეთ სრული საეკლესიო კალენდარი →",
+        btn_presentation: "გახსენით პრეზენტაცია / სლაიდშოუ",
+        btn_contact_us: "დაგვიკავშირდით და გვეწვიეთ",
+
+        presentation_title: "პრეზენტაცია / სლაიდშოუ",
+        presentation_subtitle: "გაეცანით ჩვენს სამრევლოს, ტაძრის ისტორიას და მფარველ წმინდანებს სრულ ეკრანზე.",
+        slide_select_label: "სლაიდის არჩევა :",
+        btn_fullscreen: "სრული ეკრანი",
+
+        calendar_title: "მართლმადიდებლური კალენდარი და განრიგი",
+        calendar_subtitle: "დღის წმინდანები (წყარო : Doxologia.ro) და სამრევლოს ოფიციალური განრიგი.",
+        saints_today_label: "დღეს ხსენებული წმინდანები",
+        choose_date_label: "თარიღის შეცვლა :",
+        search_saint_title: "სამრევლოს მთავარი დღესასწაულები",
+        search_saint_desc: "მოიძიეთ თქვენი მფარველი წმინდანის ხსენების დღე :",
+        patron_nicolas_desc: "წმიდა ნიკოლოზ საკვირველთმოქმედი (ტაძრის დღესასწაული)",
+        patron_radegonde_desc: "წმიდა რადეგონდა, ფრანკთა დედოფალი",
+        patron_parascheva_desc: "ღირსი პარასკევა იასელი",
+        patron_dimitrie_desc: "დიდმოწამე დიმიტრი თესალონიკელი",
+        patron_archangels_desc: "კრება წმიდათა მთავარანგელოზთა მიქაელ და გაბრიელ",
+        patron_andrei_desc: "ანდრია პირველწოდებული",
+        agenda_iframe_title: "მსახურებათა ოფიციალური განრიგი",
+        agenda_iframe_desc: "იხილეთ განახლებადი საეკლესიო კალენდარი :",
+
+        history_title: "ისტორია & სამრევლო",
+        history_subtitle: "სამრევლოს დაარსება, მფარველი წმინდანები და მართლმადიდებლობა ოვერნში.",
+        history_church_title: "ტაძარი მისამართზე: 43 rue Sainte Claire",
+        history_church_p1: "სამრევლო დაარსდა კლერმონ-ფერანსა და ოვერნის რეგიონში მცხოვრები მართლმადიდებლების გასაერთიანებლად. ტაძარი აგებულია ვულკანური ქვით.",
+        history_church_p2: "ტაძრის შიგნით აღმართულია ტრადიციული ხის კანკელი ხატებით.",
+        history_patron1_title: "წმიდა ნიკოლოზ საკვირველთმოქმედი",
+        history_patron1_text: "მირ-ლიკიის მთავარეპისკოპოსი, ჩვენი სამრევლოს უპირველესი მფარველი (ხსენება 6 დეკემბერს).",
+        history_patron2_title: "წმიდა რადეგონდა",
+        history_patron2_text: "ფრანკთა დედოფალი და მონაზონი, ადგილობრივი მფარველი (ხსენება 13 აგვისტოს).",
+        history_community_title: "მრავალეროვანი მართლმადიდებელი მრევლი",
+        history_community_text: "ჩვენი სამრევლო აერთიანებს ქართველ, რუმინელ, ფრანგ და სხვა ეროვნების მორწმუნეებს.",
+
+        liturgy_title: "ლიტურგიკული ცხოვრება და საიდუმლოებანი",
+        liturgy_subtitle: "ეკლესიის წმიდა საიდუმლოებანი, ლოცვა და მომზადება.",
+        liturgy_communion_title: "საღმრთო ლიტურგია და ზიარება",
+        liturgy_communion_text: "საღმრთო ლიტურგია გვაერთიანებს ქრისტესთან. ზიარებისთვის მორწმუნენი ემზადებიან მარხვით, ლოცვითა და აღსარებით.",
+        liturgy_baptism_title: "ნათლისღება და მირონცხება",
+        liturgy_baptism_text: "ნათლისღება წყალში სამგზის შთაფვლით.",
+        liturgy_marriage_title: "ჯვრისწერა",
+        liturgy_marriage_text: "ჯვრისწერის საიდუმლო აღესრულება კვირადღეს.",
+        liturgy_confession_title: "აღსარება",
+        liturgy_confession_text: "აღსარების მიღება აღესრულება მოძღვარ ჟერარ რეინოსთან.",
+        liturgy_memorial_title: "პანაშვიდი (შესვენებულთა მოხსენიება)",
+        liturgy_memorial_text: "მიცვალებულთა მოხსენიება და კოლიოს კურთხევა აღესრულება შაბათობით.",
+
+        schedule_title: "ღვთისმსახურების განრიგი",
+        schedule_subtitle: "ყოველკვირეული მსახურება და სადღესასწაულო დღეები.",
+        schedule_weekly_title: "ყოველკვირეული განრიგი",
+        th_day: "დღე",
+        th_hour: "საათი",
+        th_office: "მსახურება",
+        th_details: "ენები & დეტალები",
+        day_sunday: "კვირა",
+        day_saturday: "შაბათი საღამო",
+        day_feasts: "დიდი დღესასწაულები",
+        office_matins: "ცისკარი",
+        office_liturgy: "საღმრთო ლიტურგია",
+        office_vespers: "მწუხრი",
+        office_feast: "სადღესასწაულო ლიტურგია",
+        desc_matins: "ფსალმუნები, საგალობლები და მომზადება ლიტურგიისთვის",
+        desc_liturgy: "ფრანგული, რუმინული, ქართული • ტრაპეზი მსახურების შემდეგ",
+        desc_vespers: "საღამოს ლოცვა და აღსარება",
+        desc_feast: "შობა, ნათლისღება, ხარება, ამაღლება და სხვ.",
+        schedule_feasts_title: "ტაძრის დღესასწაულები",
+        schedule_note_title: "მნიშვნელოვანი ინფორმაცია",
+        schedule_note_text: "განრიგი შეიძლება შეიცვალოს დღესასწაულების მიხედვით.",
+
+        gallery_title: "ფოტოგალერეა და სამუშაოები",
+        gallery_subtitle: "ტაძრის ფოტოები, სარემონტო სამუშაოები და სამრევლო ცხოვრება.",
+        photo1_title: "ტაძარი მისამართზე: 43 rue Sainte Claire",
+        photo1_desc: "ვულკანური ქვის ტაძრის გარე ხედი და ახალი მოაჯირი.",
+        photo2_title: "საკურთხეველი და გოტიკური სარკმლები",
+        photo2_desc: "ქვის წყობისა და ვიტრაჟების დეტალები.",
+        photo3_title: "ტაძრის კანკელი",
+        photo3_desc: "ხის ტრადიციული მოჩუქურთმებული კანკელი და ხატები.",
+        photo4_title: "საერთო ტრაპეზი",
+        photo4_desc: "ძმური შეკრება და საუბრები ლიტურგიის დასრულების შემდეგ.",
+
+        donations_title: "შემოწირულობები და თანადგომა",
+        donations_subtitle: "თქვენი დახმარება ხმარდება ტაძრის შენარჩუნებას და სამშენებლო სამუშაოებს.",
+        donations_work_title: "სარესტავრაციო სამუშაოები",
+        donations_work_desc: "მრევლის ძალისხმევით შესრულდა სახურავის, კედლებისა და ეზოს კეთილმოწყობის სამუშაოები.",
+        donations_bank_title: "საბანკო გადარიცხვა (IBAN)",
+        donations_bank_desc: "შეგიძლიათ პირდაპირ გადარიცხოთ სამრევლოს ოფიციალურ ანგარიშზე :",
+        donations_ref: "დანიშნულებაში მიუთითეთ: « Don Travaux Eglise » ან « Don Paroisse ».",
+        donations_cheque_title: "ჩეკი ან ნაღდი თანხა",
+        donations_cheque_desc: "ჩეკი ორგანიზაციის სახელზე: « Paroisse Orthodoxe Saint Nicolas ».",
+        donations_tax: "საფრანგეთის კანონმდებლობით გაიცემა საგადასახადო შეღავათის ქვითარი.",
+
+        contact_title: "კონტაქტი & ლოკაცია",
+        contact_subtitle: "ოფიციალური საკონტაქტო ნომრები და ინტერაქტიული Google რუკა.",
+        contact_coords_title: "ოფიციალური მონაცემები",
+        contact_addr_label: "ტაძრის მისამართი :",
+        contact_landline_label: "სამრევლოს ქალაქის ტელეფონი :",
+        contact_email_label: "ელ-ფოსტა :",
+        contact_social_title: "სოციალური ქსელები",
+        contact_social_desc: "თვალი ადევნეთ ჩვენს ოფიციალურ გვერდებს :",
+        contact_transport_title: "ტრანსპორტი & პარკინგი :",
+        contact_transport_desc: "ავტობუსი T2C (გაჩერება: Delille Montlosier / Sainte-Claire). ახლოსაა Delille-ის პარკინგი.",
+        contact_map_title: "Google Maps რუკა (43 rue Sainte Claire)"
+      }
+    };
+
+    let currentLang = 'fr';
+    let currentActivePage = 'home';
+    let currentSlide = 1;
+
+    /* Base URL Google Slides fournie par l'utilisateur */
+    const GOOGLE_SLIDES_BASE = "https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000";
+
+    /* =================================================================
+       2. CHANGEMENT DE LANGUE DYNAMIQUE (I18N)
+       ================================================================= */
+    function changeLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+      localStorage.setItem('church_lang', lang);
+
+      // Mise à jour visuelle des boutons de langue
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      // Remplacement de tous les textes i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Titre mobile
+      const mobileTitle = document.getElementById('mobileTitle');
+      if (mobileTitle) {
+        mobileTitle.textContent = lang === 'ro' ? 'Biserica Ortodoxă Clermont' : (lang === 'ka' ? 'კლერმონ-ფერანის ტაძარი' : 'Église Orthodoxe Clermont');
+      }
+
+      // Synchronisation stricte de la diapositive :
+      // Français -> Diapositive 1 | Roumain -> Diapositive 2 | Géorgien -> Diapositive 3
+      if (lang === 'fr') setSlideIndex(1);
+      else if (lang === 'ro') setSlideIndex(2);
+      else if (lang === 'ka') setSlideIndex(3);
+
+      // Rafraîchissement du calendrier
+      updateDailySaints();
+    }
+
+    /* =================================================================
+       3. NAVIGATION SINGLE PAGE APPLICATION (SPA)
+       ================================================================= */
+    function navigateTo(targetPage) {
+      currentActivePage = targetPage;
+
+      // Cacher toutes les sections et afficher uniquement la section cible
+      document.querySelectorAll('.page-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const targetSec = document.getElementById('page-' + targetPage);
+      if (targetSec) targetSec.classList.add('active');
+
+      // Mise à jour de l'onglet actif dans la barre latérale
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-target') === targetPage);
+      });
+
+      // Fermeture du menu mobile
+      closeSidebar();
+
+      // Retour en haut de page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('mobileOverlay');
+      if (sidebar) sidebar.classList.toggle('open');
+      if (overlay) overlay.classList.toggle('open');
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebarNav');
+      const overlay = document.getElementById('mobileOverlay');
+      if (sidebar) sidebar.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
+    }
+
+    /* =================================================================
+       4. GESTION DU SLIDESHOW GOOGLE SLIDES
+       ================================================================= */
+    function setSlideIndex(index) {
+      currentSlide = index;
+
+      // Boutons onglets
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById('btnSlide' + i);
+        const textBlock = document.getElementById('slide-text-' + i);
+        if (btn) btn.classList.toggle('active', i === index);
+        if (textBlock) textBlock.style.display = (i === index ? 'block' : 'none');
+      }
+
+      // Mise à jour de l'iframe Google Slides avec la diapositive cible
+      const iframe = document.getElementById('googleSlideIframe');
+      if (iframe) {
+        iframe.src = `${GOOGLE_SLIDES_BASE}&slide=${index}`;
+      }
+    }
+
+    function toggleFullscreenSlide() {
+      const box = document.getElementById('slideViewerBox');
+      if (!box) return;
+      if (!document.fullscreenElement) {
+        if (box.requestFullscreen) box.requestFullscreen();
+        else if (box.webkitRequestFullscreen) box.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    /* =================================================================
+       5. DONNÉES DU CALENDRIER ORTHODOXE (SYNTAXE ET SAINTS DU JOUR)
+       ================================================================= */
+    const saintsDatabase = {
+      "10-06": {
+        fr: "Saint Thomas, apôtre du Christ; Sainte Érotiïde, martyre.",
+        ro: "Sfântul Apostol Toma; Sfânta Muceniță Erotiida.",
+        ka: "წმიდა მოციქული თომა; წმიდა მოწამე ეროტიიდა.",
+        fasting: { fr: "Dispense de poisson", ro: "Dezlegare la pește", ka: "თევზით ხსნილი" }
+      },
+      "10-07": {
+        fr: "Saints Serge et Bacchus, grands martyrs en Syrie; Saints Julien et Césaire.",
+        ro: "Sfinții Mari Mucenici Serghie și Vah; Sfinții Mucenici Iulian și Chesarie.",
+        ka: "წმიდა დიდმოწამენი სერგი და ბაქოსი; წმიდა მოწამენი იულიანე და კესარიოსი.",
+        fasting: { fr: "Jeûne avec huile et vin", ro: "Post cu untdelemn și vin", ka: "ზეთით ხსნილი" }
+      },
+      "10-08": {
+        fr: "Sainte Pélagie la pénitente; Sainte Taisia.",
+        ro: "Sfânta Cuvioasă Pelaghia; Sfânta Cuvioasă Taisia.",
+        ka: "ღირსი პელაგია მონანული; ღირსი ტაისია.",
+        fasting: { fr: "Sans jeûne", ro: "Fără post", ka: "ხსნილი" }
+      },
+      "10-14": {
+        fr: "Sainte Paraschève de Iași, vénérée protectrice de Moldavie; Saints Nazaire et Gervais.",
+        ro: "Sfânta Cuvioasă Parascheva de la Iași; Sfinții Mucenici Nazárie, Ghérvasie și Protásie.",
+        ka: "ღირსი პარასკევა იასელი; წმიდა მოწამენი ნაზარი და გერვასი.",
+        fasting: { fr: "Grande fête (Dispense de poisson)", ro: "Praznic mare - Dezlegare la pește", ka: "დიდი დღესასწაული - თევზით ხსნილი" }
+      },
+      "10-26": {
+        fr: "Saint Démétrios le Grand Martyr, myroblyte de Thessalonique.",
+        ro: "Sfântul Mare Mucenic Dimitrie, Izvorâtorul de Mir.",
+        ka: "წმიდა დიდმოწამე დიმიტრი თესალონიკელი (მირონმდინარე).",
+        fasting: { fr: "Dispense d'huile et vin", ro: "Dezlegare la untdelemn și vin", ka: "ზეთით ხსნილი" }
+      },
+      "12-06": {
+        fr: "Saint Nicolas de Myre en Lycie, Thaumaturge – FÊTE PATRONALE DE LA PAROISSE.",
+        ro: "Sfântul Ierarh Nicolae, Arhiepiscopul Mirelor Lichiei, Făcătorul de minuni – HRAMUL PAROHIEI.",
+        ka: "წმიდა ნიკოლოზ საკვირველთმოქმედი, მირ-ლიკიის მთავარეპისკოპოსი – სამრევლოს დღესასწაული.",
+        fasting: { fr: "Dispense de poisson (Fête Patronale)", ro: "Dezlegare la pește (Hramul Bisericii)", ka: "თევზით ხსნილი (ტაძრის დღესასწაული)" }
+      },
+      "08-13": {
+        fr: "Sainte Radegonde, reine des Francs et moniale – SAINTE PATRONNE LOCALE.",
+        ro: "Sfânta Radegonda, regina francilor – OCROTITOAREA LOCALĂ A PAROHIEI.",
+        ka: "წმიდა რადეგონდა, ფრანკთა დედოფალი – სამრევლოს მფარველი.",
+        fasting: { fr: "Carême de la Dormition", ro: "Postul Adormirii Maicii Domnului", ka: "მარიამობის მარხვა" }
+      }
+    };
+
+    let selectedCalendarDate = new Date();
+
+    function updateDailySaints() {
+      const month = String(selectedCalendarDate.getMonth() + 1).padStart(2, '0');
+      const day = String(selectedCalendarDate.getDate()).padStart(2, '0');
+      const key = `${month}-${day}`;
+
+      const saintData = saintsDatabase[key] || {
+        fr: "Saints du jour selon le Typikon orthodoxe (Consultez Doxologia.ro pour les vies complètes).",
+        ro: "Sfinții zilei rânduiți în Sinaxarul Bisericii Ortodoxe (Consultați Doxologia.ro).",
+        ka: "დღის წმინდანები მართლმადიდებლური ტიპიკონის მიხედვით (იხილეთ Doxologia.ro).",
+        fasting: { fr: "Règle ordinaire", ro: "Rânduială obișnuită", ka: "ჩვეულებრივი განგება" }
+      };
+
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const localeMap = { fr: 'fr-FR', ro: 'ro-RO', ka: 'ka-GE' };
+      const formattedDate = selectedCalendarDate.toLocaleDateString(localeMap[currentLang] || 'fr-FR', options);
+
+      const dateDisplay = document.getElementById('calendarCurrentDateDisplay');
+      if (dateDisplay) dateDisplay.textContent = formattedDate;
+
+      const saintsTitle = document.getElementById('calendarSaintsTitle');
+      const saintsDetails = document.getElementById('calendarSaintsDetails');
+      const quickSaintName = document.getElementById('quickSaintName');
+      const quickSaintRule = document.getElementById('quickSaintRule');
+      const fastingText = document.getElementById('fastingText');
+
+      const currentText = saintData[currentLang] || saintData.fr;
+      const currentFasting = (saintData.fasting && saintData.fasting[currentLang]) ? saintData.fasting[currentLang] : "Jeûne du jour";
+
+      if (saintsTitle) saintsTitle.textContent = currentText.split(';')[0];
+      if (saintsDetails) saintsDetails.textContent = currentText;
+      if (fastingText) fastingText.textContent = currentFasting;
+
+      if (quickSaintName) quickSaintName.textContent = currentText.split(';')[0];
+      if (quickSaintRule) quickSaintRule.textContent = currentFasting;
+    }
+
+    function onDatePickerChange(val) {
+      if (!val) return;
+      const parts = val.split('-');
+      selectedCalendarDate = new Date(parts[0], parts[1] - 1, parts[2]);
+      updateDailySaints();
+    }
+
+    /* =================================================================
+       6. INITIALISATION AU CHARGEMENT DE LA PAGE
+       ================================================================= */
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('church_lang') || 'fr';
+      
+      const today = new Date();
+      const dateInput = document.getElementById('calendarDateSelector');
+      if (dateInput) {
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        dateInput.value = `${yyyy}-${mm}-${dd}`;
+      }
+
+      changeLanguage(savedLang);
+    });
+  </script>
+</body>
+</html>
