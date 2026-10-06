@@ -16,15 +16,16 @@
   <style>
     :root {
       --bg-main: #f8fafc;
-      --bg-sidebar: #0f172a;
+      --bg-sidebar: #22344d; /* Bleu ardoise noble et lumineux, plus doux et clair que #0f172a */
+      --sidebar-border: #384e6c;
       --bg-card: #ffffff;
-      --bg-card-hover: #f1f5f9;
-      --border-color: #cbd5e1;
+      --bg-card-hover: #f8fafc;
+      --border-color: #e2e8f0;
       --gold-primary: #b45309;
       --gold-light: #92400e;
       --gold-dark: #78350f;
       --text-main: #0f172a;
-      --text-muted: #475569;
+      --text-muted: #334155;
       --text-dim: #64748b;
       --accent-red: #dc2626;
       --accent-blue: #0284c7;
@@ -99,7 +100,7 @@
       left: 0;
       width: var(--sidebar-width);
       background: var(--bg-sidebar);
-      border-right: 1px solid #1e293b;
+      border-right: 1px solid var(--sidebar-border);
       display: flex;
       flex-direction: column;
       z-index: 900;
@@ -109,13 +110,13 @@
 
     .brand-header {
       padding: 24px 20px;
-      border-bottom: 1px solid #1e293b;
+      border-bottom: 1px solid var(--sidebar-border);
       text-align: center;
     }
 
     .brand-cross {
       font-size: 2.2rem;
-      color: #e2b714;
+      color: #facc15;
       line-height: 1;
       margin-bottom: 8px;
       display: inline-block;
@@ -132,7 +133,7 @@
 
     .brand-subtitle {
       font-size: 0.78rem;
-      color: #94a3b8;
+      color: #cbd5e1;
       margin-top: 4px;
     }
 
@@ -149,7 +150,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      color: #cbd5e1;
+      color: #f1f5f9;
       text-decoration: none;
       border-radius: 8px;
       font-size: 0.92rem;
@@ -160,30 +161,30 @@
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      border-color: rgba(226, 183, 20, 0.3);
+      border-color: rgba(250, 204, 21, 0.35);
     }
 
     .nav-item.active {
-      background: rgba(226, 183, 20, 0.16);
+      background: rgba(234, 179, 8, 0.22);
       color: #fef08a;
-      border-color: #e2b714;
-      font-weight: 600;
+      border-color: #facc15;
+      font-weight: 700;
     }
 
     .nav-icon {
       font-size: 1.1rem;
       width: 22px;
       text-align: center;
-      color: #e2b714;
+      color: #facc15;
     }
 
     .sidebar-footer {
       padding: 16px 20px;
-      border-top: 1px solid #1e293b;
+      border-top: 1px solid var(--sidebar-border);
       font-size: 0.78rem;
-      color: #94a3b8;
+      color: #cbd5e1;
       text-align: center;
     }
 
@@ -196,7 +197,7 @@
       right: 0;
       height: 62px;
       background: var(--bg-sidebar);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--sidebar-border);
       z-index: 850;
       padding: 0 16px;
       align-items: center;
@@ -765,8 +766,8 @@
         <span data-i18n="nav_home">Accueil</span>
       </a>
       <a class="nav-item" data-target="presentation" onclick="navigateTo('presentation')">
-        <span class="nav-icon">📽️</span>
-        <span data-i18n="nav_presentation">Présentation / Slideshow</span>
+        <span class="nav-icon">📢</span>
+        <span data-i18n="nav_presentation">Actualités</span>
       </a>
       <a class="nav-item" data-target="calendar" onclick="navigateTo('calendar')">
         <span class="nav-icon">📅</span>
@@ -858,43 +859,29 @@
         <div class="card-title"><span>🕊️</span> <span data-i18n="home_about_title">Une communauté vivante et fraternelle</span></div>
         <p data-i18n="home_about_text">La paroisse orthodoxe de Clermont-Ferrand témoigne de la tradition millénaire de l'Église une, sainte, catholique et apostolique. Elle rassemble les fidèles d'Auvergne et accueille chacun avec amour, proposant la catéchèse, les sacrements de l'Église (baptêmes, mariages, confessions), les agapes fraternelles après chaque liturgie et les offices pour les défunts.</p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px;">
-          <button class="slide-tab-btn" onclick="navigateTo('presentation')" data-i18n="btn_presentation">Découvrir la Présentation / Slideshow</button>
+          <button class="slide-tab-btn" onclick="navigateTo('presentation')" data-i18n="btn_presentation">Consulter les Actualités →</button>
           <button class="slide-tab-btn" onclick="navigateTo('contact')" data-i18n="btn_contact_us">Nous contacter &amp; Venir nous voir</button>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 2. PAGE PRÉSENTATION / SLIDESHOW ==================== -->
+    <!-- ==================== 2. PAGE ACTUALITÉS ==================== -->
     <section id="page-presentation" class="page-section">
-      <h1 class="section-title"><span>📽️</span> <span data-i18n="presentation_title">Présentation / Slideshow</span></h1>
-      <p class="section-subtitle" data-i18n="presentation_subtitle">Découvrez notre paroisse, l'histoire de l'église, ses saints protecteurs et sa communauté en projection plein écran.</p>
+      <h1 class="section-title"><span>📢</span> <span data-i18n="presentation_title">Actualités</span></h1>
+      <p class="section-subtitle" data-i18n="presentation_subtitle">Annonces paroissiales, vie de la communauté et informations importantes en projection.</p>
 
-      <!-- Contrôles et sélecteur de diapositive -->
-      <div class="slide-controls-bar">
-        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-          <span style="font-weight: 600; color: var(--gold-light);" data-i18n="slide_select_label">Sélection de Diapositive :</span>
-          <button type="button" class="slide-tab-btn active" id="btnSlide1" onclick="setSlideIndex(1)">
-            <span>🇫🇷 Diapositive 1 (Français)</span>
-          </button>
-          <button type="button" class="slide-tab-btn" id="btnSlide2" onclick="setSlideIndex(2)">
-            <span>🇷🇴 Diapozitivul 2 (Română)</span>
-          </button>
-          <button type="button" class="slide-tab-btn" id="btnSlide3" onclick="setSlideIndex(3)">
-            <span>🇬🇪 სლაიდი 3 (ქართული)</span>
-          </button>
-        </div>
-        <div style="display: flex; gap: 8px;">
-          <button type="button" class="slide-tab-btn" onclick="toggleFullscreenSlide()" title="Plein écran">
-            ⛶ <span data-i18n="btn_fullscreen">Mode Plein Écran</span>
-          </button>
-        </div>
+      <!-- Barre d'outils Actualités -->
+      <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 14px;">
+        <button type="button" class="slide-tab-btn" onclick="toggleFullscreenSlide()" title="Plein écran">
+          ⛶ <span data-i18n="btn_fullscreen">Mode Plein Écran</span>
+        </button>
       </div>
 
-      <!-- Lecteur de présentation Google Slides officiel (avec diapositive dynamique 1, 2 ou 3) -->
+      <!-- Lecteur de présentation Google Slides officiel (avec diapositive dynamique 1: id.p, 2: id.h459a7b3f50cdaeef_0_0, 3: id.h459a7b3f50cdaeef_0_5) -->
       <div class="slide-viewer-box" id="slideViewerBox">
         <iframe id="googleSlideIframe" 
                 class="slide-iframe" 
-                src="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000&slide=1" 
+                src="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000&slide=id.p" 
                 data-base-url="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000"
                 allowfullscreen="true" 
                 mozallowfullscreen="true" 
@@ -1149,7 +1136,10 @@
         </div>
 
         <div class="gallery-card">
-          <div class="gallery-thumb" style="display: flex; align-items: center; justify-content: center; background: #131d31; color: var(--gold-primary); font-size: 3rem;">☦</div>
+          <img src="sainte_iconostase.jpg" 
+               alt="Sainte Iconostase de l'Église Orthodoxe" 
+               class="gallery-thumb" 
+               onerror="this.onerror=null; this.src='public/sainte_iconostase.jpg';">
           <div class="gallery-caption">
             <strong style="color: var(--gold-light);" data-i18n="photo3_title">Sainte Iconostase</strong>
             <p data-i18n="photo3_desc">L'iconostase traditionnelle sculptée en bois et ses icônes byzantines peintes pour la prière.</p>
@@ -1239,6 +1229,14 @@
           <div class="contact-item">
             <div class="contact-icon">👤</div>
             <div class="contact-info">
+              <strong>Ileana JOLLY (Administrator bisericesc) :</strong>
+              <a href="tel:0777894000">07 77 89 40 00</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">👤</div>
+            <div class="contact-info">
               <strong>Ciprian POPA :</strong>
               <a href="tel:0618121569">06 18 12 15 69</a>
             </div>
@@ -1313,7 +1311,7 @@
         brand_title: "Église Orthodoxe",
         brand_patrons: "St Nicolas & Ste Radegonde<br>Clermont-Ferrand",
         nav_home: "Accueil",
-        nav_presentation: "Présentation / Slideshow",
+        nav_presentation: "Actualités",
         nav_calendar: "Calendrier & Agenda",
         nav_history: "Historique & Paroisse",
         nav_liturgy: "Vie Liturgique",
@@ -1334,11 +1332,11 @@
         home_about_text: "La paroisse orthodoxe de Clermont-Ferrand témoigne de la tradition millénaire de l'Église une, sainte, catholique et apostolique. Elle rassemble les fidèles d'Auvergne et accueille chacun avec amour.",
         btn_see_schedule: "Voir tous les horaires des offices →",
         btn_see_calendar: "Consulter l'agenda et le calendrier complet →",
-        btn_presentation: "Découvrir la Présentation / Slideshow",
+        btn_presentation: "Consulter les Actualités →",
         btn_contact_us: "Nous contacter & Venir nous voir",
 
-        presentation_title: "Présentation / Slideshow",
-        presentation_subtitle: "Découvrez notre paroisse, l'histoire de l'église, ses saints protecteurs et sa communauté en projection plein écran.",
+        presentation_title: "Actualités",
+        presentation_subtitle: "Annonces paroissiales, vie de la communauté et informations importantes en projection.",
         slide_select_label: "Sélection de Diapositive :",
         btn_fullscreen: "Mode Plein Écran",
 
@@ -1443,7 +1441,7 @@
         brand_title: "Biserica Ortodoxă",
         brand_patrons: "Sf. Nicolae & Sf. Radegonda<br>Clermont-Ferrand",
         nav_home: "Acasă",
-        nav_presentation: "Prezentare / Slideshow",
+        nav_presentation: "Actualități",
         nav_calendar: "Calendar & Agendă",
         nav_history: "Istoric & Parohie",
         nav_liturgy: "Viața Liturgică",
@@ -1464,11 +1462,11 @@
         home_about_text: "Parohia ortodoxă din Clermont-Ferrand mărturisește credința apostolică neschimbată și îi primește cu dragoste pe toți credincioșii din regiunea Auvergne.",
         btn_see_schedule: "Vezi tot programul slujbelor →",
         btn_see_calendar: "Vezi calendarul ortodox complet →",
-        btn_presentation: "Descoperă Prezentarea / Slideshow",
+        btn_presentation: "Vezi Actualitățile →",
         btn_contact_us: "Contactează-ne & Vino la biserică",
 
-        presentation_title: "Prezentare / Slideshow",
-        presentation_subtitle: "Descoperiți parohia noastră, istoricul bisericii, sfinții ocrotitori și viața comunității în ecran complet.",
+        presentation_title: "Actualități",
+        presentation_subtitle: "Anunțurile parohiei noastre, viața comunității și informații importante în proiecție.",
         slide_select_label: "Alege Diapozitivul :",
         btn_fullscreen: "Mod Ecran Complet",
 
@@ -1573,7 +1571,7 @@
         brand_title: "მართლმადიდებლური ეკლესია",
         brand_patrons: "წმ. ნიკოლოზი & წმ. რადეგონდა<br>კლერმონ-ფერანი",
         nav_home: "მთავარი",
-        nav_presentation: "პრეზენტაცია / სლაიდშოუ",
+        nav_presentation: "სიახლეები",
         nav_calendar: "კალენდარი & განრიგი",
         nav_history: "ისტორია & სამრევლო",
         nav_liturgy: "ლიტურგიკული ცხოვრება",
@@ -1594,11 +1592,11 @@
         home_about_text: "კლერმონ-ფერანის სამრევლო ამოწმებს ეკლესიის საუკუნოვან ტრადიციას და სიყვარულით იღებს ყველას.",
         btn_see_schedule: "იხილეთ მსახურების სრული განრიგი →",
         btn_see_calendar: "იხილეთ სრული საეკლესიო კალენდარი →",
-        btn_presentation: "გახსენით პრეზენტაცია / სლაიდშოუ",
+        btn_presentation: "სიახლეების ნახვა →",
         btn_contact_us: "დაგვიკავშირდით და გვეწვიეთ",
 
-        presentation_title: "პრეზენტაცია / სლაიდშოუ",
-        presentation_subtitle: "გაეცანით ჩვენს სამრევლოს, ტაძრის ისტორიას და მფარველ წმინდანებს სრულ ეკრანზე.",
+        presentation_title: "სიახლეები",
+        presentation_subtitle: "სამრევლო ცხოვრება, განცხადებები და მნიშვნელოვანი ინფორმაცია.",
         slide_select_label: "სლაიდის არჩევა :",
         btn_fullscreen: "სრული ეკრანი",
 
@@ -1707,10 +1705,20 @@
     /* Base URL Google Slides fournie par l'utilisateur */
     const GOOGLE_SLIDES_BASE = "https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000";
 
+    /* Identifiants précis des diapositives dans la présentation Google Slides :
+       Diapositive 1 (Français) : 'id.p'
+       Diapositive 2 (Roumain)  : 'id.h459a7b3f50cdaeef_0_0'
+       Diapositive 3 (Géorgien) : 'id.h459a7b3f50cdaeef_0_5' */
+    const SLIDE_PAGE_IDS = {
+      1: 'id.p',
+      2: 'id.h459a7b3f50cdaeef_0_0',
+      3: 'id.h459a7b3f50cdaeef_0_5'
+    };
+
     /* =================================================================
        2. CHANGEMENT DE LANGUE DYNAMIQUE (I18N)
        ================================================================= */
-    function changeLanguage(lang) {
+    function changeLanguage(lang, syncSlide = true) {
       if (!translations[lang]) return;
       currentLang = lang;
       localStorage.setItem('church_lang', lang);
@@ -1734,11 +1742,15 @@
         mobileTitle.textContent = lang === 'ro' ? 'Biserica Ortodoxă Clermont' : (lang === 'ka' ? 'კლერმონ-ფერანის ტაძარი' : 'Église Orthodoxe Clermont');
       }
 
-      // Synchronisation stricte de la diapositive :
-      // Français -> Diapositive 1 | Roumain -> Diapositive 2 | Géorgien -> Diapositive 3
-      if (lang === 'fr') setSlideIndex(1);
-      else if (lang === 'ro') setSlideIndex(2);
-      else if (lang === 'ka') setSlideIndex(3);
+      // Synchronisation stricte de la diapositive selon le choix de langue au-dessus :
+      // Français -> Diapositive 1 (id.p)
+      // Roumain  -> Diapositive 2 (id.h459a7b3f50cdaeef_0_0)
+      // Géorgien -> Diapositive 3 (id.h459a7b3f50cdaeef_0_5)
+      if (syncSlide) {
+        if (lang === 'fr') setSlideIndex(1, false);
+        else if (lang === 'ro') setSlideIndex(2, false);
+        else if (lang === 'ka') setSlideIndex(3, false);
+      }
 
       // Rafraîchissement du calendrier
       updateDailySaints();
@@ -1786,7 +1798,7 @@
     /* =================================================================
        4. GESTION DU SLIDESHOW GOOGLE SLIDES
        ================================================================= */
-    function setSlideIndex(index) {
+    function setSlideIndex(index, syncLanguage = false) {
       currentSlide = index;
 
       // Boutons onglets
@@ -1797,10 +1809,19 @@
         if (textBlock) textBlock.style.display = (i === index ? 'block' : 'none');
       }
 
-      // Mise à jour de l'iframe Google Slides avec la diapositive cible
+      // Mise à jour de l'iframe Google Slides avec la diapositive exacte
+      const slideParam = SLIDE_PAGE_IDS[index] || 'id.p';
       const iframe = document.getElementById('googleSlideIframe');
       if (iframe) {
-        iframe.src = `${GOOGLE_SLIDES_BASE}&slide=${index}`;
+        iframe.src = `${GOOGLE_SLIDES_BASE}&slide=${slideParam}`;
+      }
+
+      // Synchronisation bidirectionnelle : si l'utilisateur clique sur un onglet de diapositive, aligner la langue du site
+      if (syncLanguage) {
+        const langMap = { 1: 'fr', 2: 'ro', 3: 'ka' };
+        if (langMap[index] && langMap[index] !== currentLang) {
+          changeLanguage(langMap[index], false);
+        }
       }
     }
 
