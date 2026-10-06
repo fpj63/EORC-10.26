@@ -15,19 +15,19 @@
        =================================================================== -->
   <style>
     :root {
-      --bg-main: #0b1120;
-      --bg-sidebar: #070d18;
-      --bg-card: #131d31;
-      --bg-card-hover: #18263f;
-      --border-color: #233554;
-      --gold-primary: #d4af37;
-      --gold-light: #f3e5ab;
-      --gold-dark: #aa820a;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
+      --bg-main: #f8fafc;
+      --bg-sidebar: #0f172a;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #cbd5e1;
+      --gold-primary: #b45309;
+      --gold-light: #92400e;
+      --gold-dark: #78350f;
+      --text-main: #0f172a;
+      --text-muted: #475569;
       --text-dim: #64748b;
-      --accent-red: #e11d48;
-      --accent-blue: #38bdf8;
+      --accent-red: #dc2626;
+      --accent-blue: #0284c7;
       --sidebar-width: 280px;
       --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
@@ -57,10 +57,10 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      background: rgba(7, 13, 24, 0.94);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
-      border: 1px solid var(--gold-primary);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
       border-radius: 8px;
       padding: 4px;
     }
@@ -81,13 +81,13 @@
     }
 
     .lang-btn:hover {
-      color: var(--gold-light);
-      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-primary);
+      background: rgba(180, 83, 9, 0.1);
     }
 
     .lang-btn.active {
       background: var(--gold-primary);
-      color: #070d18;
+      color: #ffffff;
       font-weight: 700;
     }
 
@@ -99,7 +99,7 @@
       left: 0;
       width: var(--sidebar-width);
       background: var(--bg-sidebar);
-      border-right: 1px solid var(--border-color);
+      border-right: 1px solid #1e293b;
       display: flex;
       flex-direction: column;
       z-index: 900;
@@ -109,13 +109,13 @@
 
     .brand-header {
       padding: 24px 20px;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid #1e293b;
       text-align: center;
     }
 
     .brand-cross {
       font-size: 2.2rem;
-      color: var(--gold-primary);
+      color: #e2b714;
       line-height: 1;
       margin-bottom: 8px;
       display: inline-block;
@@ -125,14 +125,14 @@
       font-size: 1.05rem;
       font-weight: 700;
       letter-spacing: 0.5px;
-      color: var(--gold-light);
+      color: #fef08a;
       text-transform: uppercase;
       line-height: 1.3;
     }
 
     .brand-subtitle {
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: #94a3b8;
       margin-top: 4px;
     }
 
@@ -149,7 +149,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      color: var(--text-muted);
+      color: #cbd5e1;
       text-decoration: none;
       border-radius: 8px;
       font-size: 0.92rem;
@@ -160,15 +160,15 @@
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text-main);
-      border-color: rgba(212, 175, 55, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border-color: rgba(226, 183, 20, 0.3);
     }
 
     .nav-item.active {
-      background: rgba(212, 175, 55, 0.12);
-      color: var(--gold-light);
-      border-color: var(--gold-primary);
+      background: rgba(226, 183, 20, 0.16);
+      color: #fef08a;
+      border-color: #e2b714;
       font-weight: 600;
     }
 
@@ -176,14 +176,14 @@
       font-size: 1.1rem;
       width: 22px;
       text-align: center;
-      color: var(--gold-primary);
+      color: #e2b714;
     }
 
     .sidebar-footer {
       padding: 16px 20px;
-      border-top: 1px solid var(--border-color);
+      border-top: 1px solid #1e293b;
       font-size: 0.78rem;
-      color: var(--text-dim);
+      color: #94a3b8;
       text-align: center;
     }
 
@@ -298,19 +298,19 @@
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 24px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
       width: 100%;
       box-sizing: border-box;
     }
 
     .card-title {
       font-size: 1.25rem;
-      color: var(--gold-light);
+      color: var(--text-main);
       margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* HERO BANNER & PHOTO D'ACCUEIL CADRÉE */
@@ -320,7 +320,7 @@
       overflow: hidden;
       border: 1px solid var(--border-color);
       margin-bottom: 26px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
       width: 100%;
     }
 
@@ -330,7 +330,7 @@
       max-height: 42vh;
       overflow: hidden;
       position: relative;
-      background: #111a2e;
+      background: #0f172a;
     }
 
     .hero-img {
@@ -344,7 +344,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(11, 17, 32, 0.15) 0%, rgba(11, 17, 32, 0.88) 100%);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.88) 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -360,7 +360,7 @@
     }
 
     .hero-patrons {
-      color: var(--gold-light);
+      color: #fef08a;
       font-size: 1.05rem;
       font-weight: 600;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
@@ -368,13 +368,15 @@
     }
 
     .highlight-box {
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid var(--gold-primary);
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid var(--gold-primary);
       border-radius: 8px;
       padding: 18px 22px;
       margin-bottom: 22px;
       width: 100%;
       box-sizing: border-box;
+      color: #1e293b;
     }
 
     .grid-2 {
@@ -403,7 +405,7 @@
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.15);
       margin-bottom: 20px;
     }
 
@@ -425,11 +427,12 @@
       border-radius: 10px;
       border: 1px solid var(--border-color);
       margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
 
     .slide-tab-btn {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
+      background: #f1f5f9;
+      color: var(--text-main);
       border: 1px solid var(--border-color);
       padding: 8px 16px;
       border-radius: 6px;
@@ -441,7 +444,7 @@
 
     .slide-tab-btn.active, .slide-tab-btn:hover {
       background: var(--gold-primary);
-      color: #070d18;
+      color: #ffffff;
       border-color: var(--gold-primary);
     }
 
@@ -452,13 +455,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: radial-gradient(circle at center, #182848 0%, #09101d 100%);
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
       color: #fff;
     }
 
     .native-slide-title {
       font-size: 1.7rem;
-      color: var(--gold-light);
+      color: #fef08a;
       margin-bottom: 12px;
       border-bottom: 2px solid var(--gold-primary);
       padding-bottom: 8px;
@@ -484,11 +487,15 @@
       margin-bottom: 20px;
       width: 100%;
       box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
 
     .saints-today-card {
       border-left: 4px solid var(--gold-primary);
-      background: #101a2f;
+      background: #fffbeb;
+      border-top: 1px solid #fde68a;
+      border-right: 1px solid #fde68a;
+      border-bottom: 1px solid #fde68a;
       padding: 22px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -504,9 +511,9 @@
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 600;
-      background: rgba(212, 175, 55, 0.15);
-      color: var(--gold-light);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
       margin-top: 10px;
     }
 
@@ -539,7 +546,7 @@
     .contact-icon {
       font-size: 1.25rem;
       color: var(--gold-primary);
-      background: rgba(212, 175, 55, 0.12);
+      background: #fef3c7;
       width: 40px;
       height: 40px;
       border-radius: 8px;
@@ -547,6 +554,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      border: 1px solid #fde68a;
     }
 
     .contact-info strong {
@@ -556,12 +564,14 @@
     }
 
     .contact-info a, .contact-info span {
-      color: var(--gold-light);
+      color: var(--text-main);
       text-decoration: none;
       font-size: 0.95rem;
+      font-weight: 500;
     }
 
     .contact-info a:hover {
+      color: var(--gold-primary);
       text-decoration: underline;
     }
 
@@ -583,7 +593,7 @@
     }
 
     .btn-youtube {
-      background: #ff0000;
+      background: #dc2626;
     }
 
     .btn-social:hover {
@@ -595,8 +605,8 @@
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      background: #070d18;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+      background: #ffffff;
     }
 
     .map-container iframe {
@@ -620,6 +630,7 @@
       border: 1px solid var(--border-color);
       border-radius: 10px;
       overflow: hidden;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
@@ -633,7 +644,7 @@
       height: 210px;
       object-fit: cover;
       display: block;
-      background: #09101d;
+      background: #0f172a;
     }
 
     .gallery-caption {
@@ -656,13 +667,13 @@
     }
 
     .schedule-table th {
-      color: var(--gold-primary);
-      font-weight: 600;
-      background: rgba(0, 0, 0, 0.2);
+      color: var(--text-main);
+      font-weight: 700;
+      background: #f1f5f9;
     }
 
     .schedule-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+      background: #f8fafc;
     }
 
     /* GESTION RESPONSIVE */
@@ -924,11 +935,11 @@
       <div class="calendar-header-box">
         <div>
           <div style="font-size: 0.85rem; color: var(--gold-primary); text-transform: uppercase; font-weight: 700;" data-i18n="saints_today_label">Saints Célébrés Aujourd'hui</div>
-          <div id="calendarCurrentDateDisplay" style="font-size: 1.35rem; font-weight: 700; color: #ffffff;">6 Octobre</div>
+          <div id="calendarCurrentDateDisplay" style="font-size: 1.35rem; font-weight: 700; color: var(--text-main);">6 Octobre</div>
         </div>
         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
           <label for="calendarDateSelector" style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="choose_date_label">Changer de date :</label>
-          <input type="date" id="calendarDateSelector" onchange="onDatePickerChange(this.value)" style="padding: 6px 12px; background: #070d18; border: 1px solid var(--border-color); color: #fff; border-radius: 6px; font-size: 0.9rem;">
+          <input type="date" id="calendarDateSelector" onchange="onDatePickerChange(this.value)" style="padding: 6px 12px; background: #ffffff; border: 1px solid var(--border-color); color: var(--text-main); border-radius: 6px; font-size: 0.9rem;">
           <a href="https://doxologia.ro/calendar-ortodox" target="_blank" rel="noopener noreferrer" class="doxologia-link-btn" title="Ouvrir le calendrier sur Doxologia.ro">
             <span>📖</span> <span>Doxologia.ro</span>
           </a>
@@ -937,7 +948,7 @@
 
       <div class="saints-today-card">
         <h2 id="calendarSaintsTitle" style="color: var(--gold-light); font-size: 1.4rem; margin-bottom: 8px;">Saint Apôtre Thomas</h2>
-        <p id="calendarSaintsDetails" style="font-size: 1.05rem; color: #e2e8f0; line-height: 1.6;">Saint Apôtre Thomas; Sainte Martyre Érotiïde.</p>
+        <p id="calendarSaintsDetails" style="font-size: 1.05rem; color: var(--text-main); line-height: 1.6;">Saint Apôtre Thomas; Sainte Martyre Érotiïde.</p>
         <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 14px;">
           <div class="fasting-badge" id="calendarFastingRule">
             <span>🐟</span> <span id="fastingText">Dezlegare la pește / Dispense de poisson</span>
@@ -952,27 +963,27 @@
         <div class="card-title"><span>🔍</span> <span data-i18n="search_saint_title">Vérification de fête &amp; Fêtes patronales majeures</span></div>
         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;" data-i18n="search_saint_desc">Trouvez la date de célébration de votre saint patron :</p>
         <div class="grid-3">
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">6 Décembre / Decembrie</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_nicolas_desc">Saint Nicolas le Thaumaturge (Hramul Bisericii)</p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">13 Août / August</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_radegonde_desc">Sainte Radegonde, reine des Francs</p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">14 Octobre / Octombrie</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_parascheva_desc">Sainte Paraschève de Iași (Ocrotitoarea Moldovei)</p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">26 Octobre / Octombrie</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_dimitrie_desc">Saint Démétrios le Grand Martyr</p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">8 Novembre / Noiembrie</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_archangels_desc">Saints Archanges Michel et Gabriel</p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);">30 Novembre / Noiembrie</strong>
             <p style="font-size: 0.88rem; margin-top: 4px;" data-i18n="patron_andrei_desc">Saint Apôtre André, premier appelé</p>
           </div>
@@ -1169,11 +1180,11 @@
         <div class="card">
           <div class="card-title"><span>💳</span> <span data-i18n="donations_bank_title">Par Virement Bancaire (IBAN)</span></div>
           <p style="margin-bottom: 12px;" data-i18n="donations_bank_desc">Vous pouvez effectuer un virement bancaire directement sur le compte officiel de l'association paroissiale :</p>
-          <div style="background: #070d18; padding: 14px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border: 1px solid var(--border-color); color: var(--gold-light); word-break: break-all;">
+          <div style="background: #f8fafc; padding: 14px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; border: 1px solid var(--border-color); color: var(--text-main); word-break: break-all;">
             <strong>Titulaire :</strong> Paroisse Orthodoxe Saint Nicolas et Sainte Radegonde<br>
             <strong>Banque :</strong> Crédit Mutuel / Agence Clermont-Ferrand<br>
-            <strong>IBAN :</strong> FR76 1027 8027 4600 0204 4330 156<br>
-            <strong>BIC / SWIFT :</strong> CMCIFR2A
+            <strong style="color: var(--gold-primary);">IBAN :</strong> FR76 1027 8027 4600 0204 4330 156<br>
+            <strong style="color: var(--gold-primary);">BIC / SWIFT :</strong> CMCIFR2A
           </div>
           <p style="margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);" data-i18n="donations_ref">Mentionnez dans le motif : « Don Travaux Église » ou « Don Paroisse ».</p>
         </div>
@@ -1181,8 +1192,8 @@
         <div class="card">
           <div class="card-title"><span>✉️</span> <span data-i18n="donations_cheque_title">Par Chèque ou Espèces</span></div>
           <p style="margin-bottom: 10px;" data-i18n="donations_cheque_desc"><strong>Chèque :</strong> À l'ordre de « <em>Paroisse Orthodoxe Saint Nicolas</em> » à remettre lors des offices ou à envoyer par courrier à l'adresse officielle :</p>
-          <div style="background: #070d18; padding: 14px; border-radius: 6px; border: 1px solid var(--border-color); color: #fff;">
-            Paroisse Orthodoxe Saint Nicolas &amp; Sainte Radegonde<br>
+          <div style="background: #f8fafc; padding: 14px; border-radius: 6px; border: 1px solid var(--border-color); color: var(--text-main);">
+            <strong>Paroisse Orthodoxe Saint Nicolas &amp; Sainte Radegonde</strong><br>
             43 rue Sainte Claire<br>
             63000 Clermont-Ferrand, FRANCE
           </div>
@@ -1265,7 +1276,7 @@
             </a>
           </div>
 
-          <div style="margin-top: 24px; padding: 14px; background: #070d18; border-radius: 8px; border: 1px solid var(--border-color);">
+          <div style="margin-top: 24px; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border-color);">
             <strong style="color: var(--gold-light);" data-i18n="contact_transport_title">Transports &amp; Stationnement :</strong>
             <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;" data-i18n="contact_transport_desc">Accessible en Bus T2C (Arrêts proches : Delille Montlosier / Sainte-Claire). Parking Delille à proximité.</p>
           </div>
