@@ -877,12 +877,12 @@
         </button>
       </div>
 
-      <!-- Lecteur de présentation Google Slides officiel (avec diapositive dynamique 1: id.p, 2: id.h459a7b3f50cdaeef_0_0, 3: id.h459a7b3f50cdaeef_0_5) -->
+      <!-- Lecteur de présentation Google Slides officiel (tableau-affichage-paroisse) -->
       <div class="slide-viewer-box" id="slideViewerBox">
         <iframe id="googleSlideIframe" 
                 class="slide-iframe" 
-                src="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000&slide=id.p" 
-                data-base-url="https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000"
+                src="https://docs.google.com/presentation/d/1u5duephGd4jnDHUYkXgRSpHNWR7pIlp2/embed?start=false&loop=false&delayms=3000&slide=id.p1" 
+                data-base-url="https://docs.google.com/presentation/d/1u5duephGd4jnDHUYkXgRSpHNWR7pIlp2/embed?start=false&loop=false&delayms=3000"
                 allowfullscreen="true" 
                 mozallowfullscreen="true" 
                 webkitallowfullscreen="true">
@@ -1702,17 +1702,17 @@
     let currentActivePage = 'home';
     let currentSlide = 1;
 
-    /* Base URL Google Slides fournie par l'utilisateur */
-    const GOOGLE_SLIDES_BASE = "https://docs.google.com/presentation/d/1K48KIBt_o8vZUa6LFGsXK9K3kNR8_LGaFHcCti-N4xM/embed?start=false&loop=false&delayms=3000";
+    /* Base URL Google Slides fournie par l'utilisateur (tableau-affichage-paroisse.pptx) */
+    const GOOGLE_SLIDES_BASE = "https://docs.google.com/presentation/d/1u5duephGd4jnDHUYkXgRSpHNWR7pIlp2/embed?start=false&loop=false&delayms=3000";
 
     /* Identifiants précis des diapositives dans la présentation Google Slides :
-       Diapositive 1 (Français) : 'id.p'
-       Diapositive 2 (Roumain)  : 'id.h459a7b3f50cdaeef_0_0'
-       Diapositive 3 (Géorgien) : 'id.h459a7b3f50cdaeef_0_5' */
+       Diapositive 1 (Français) : 'id.p1'
+       Diapositive 2 (Roumain)  : 'id.p2'
+       Diapositive 3 (Géorgien) : 'id.p2' (ou 'id.p1') */
     const SLIDE_PAGE_IDS = {
-      1: 'id.p',
-      2: 'id.h459a7b3f50cdaeef_0_0',
-      3: 'id.h459a7b3f50cdaeef_0_5'
+      1: 'id.p1',
+      2: 'id.p2',
+      3: 'id.p2'
     };
 
     /* =================================================================
@@ -1810,7 +1810,7 @@
       }
 
       // Mise à jour de l'iframe Google Slides avec la diapositive exacte
-      const slideParam = SLIDE_PAGE_IDS[index] || 'id.p';
+      const slideParam = SLIDE_PAGE_IDS[index] || 'id.p1';
       const iframe = document.getElementById('googleSlideIframe');
       if (iframe) {
         iframe.src = `${GOOGLE_SLIDES_BASE}&slide=${slideParam}`;
